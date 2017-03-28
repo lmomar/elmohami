@@ -32,13 +32,13 @@
 
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2"><label>الملف</label></div><?php echo "test";dd($files); ?>
+                        <div class="col-sm-2"><label>الملف</label></div>
                         <div class="col-sm-10"> <select name="file_reference" class="form-control">
                                 
                                 @if ($files)
-                                    @foreach (@files as $f)
-                                    <option value="{{ $f->file_reference }}">{{ $f->file_reference}}</option>
-                                    @endforeach
+                                    @for ($i=0;$i < count($files) ;$i++)
+                                    <option value="{{ $files[$i]->file_reference }}">{{ $files[$i]->file_reference}}</option>
+                                    @endfor
                                 @endif
                             </select></div>
 

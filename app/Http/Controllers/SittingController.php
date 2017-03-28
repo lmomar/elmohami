@@ -30,9 +30,8 @@ class SittingController extends Controller{
     
     public function edit($id) {
         $sitting = Sitting::findOrFail($id);
-        $files = File::all();
-        dd($files);
-        return view('sittings.edit',['sitting' => $sitting,'files' => compact($files)]);
+        $files = File::select('file_reference','elementary_num')->get();
+        return view('sittings.edit',['sitting' => $sitting])->with('files',$files);
     }
     
     public function update(Request $request,$id){
