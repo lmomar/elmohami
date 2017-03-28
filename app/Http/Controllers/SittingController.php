@@ -8,7 +8,8 @@ use App\File;
 class SittingController extends Controller{
     
     public function create() {
-        return view('sittings.create');
+        $files = File::select('file_reference','elementary_num')->get();
+        return view('sittings.create')->with('files',$files);
     }
     
     public function store(Request $request) {

@@ -35,8 +35,11 @@
                         <div class="form-group">
                             <div class="col-sm-2"><label>الملف</label></div>
                             <div class="col-sm-10"> <select name="file_reference" class="form-control">
-                                    <option value="121">file 1</option>
-                                    <option value="2">file 2</option>
+                                    @if ($files)
+                                    @for ($i=0;$i < count($files) ;$i++)
+                                    <option value="{{ $files[$i]->file_reference }}">{{ $files[$i]->file_reference}}</option>
+                                    @endfor
+                                    @endif
                                 </select></div>
 
                         </div>
