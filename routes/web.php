@@ -31,6 +31,15 @@ Route::get('office/password/reset/{token}', 'Office\ResetPasswordController@show
 Route::get('office/register','Office\RegisterController@showRegistrationForm')->name('office.register');
 Route::post('office/register','Office\RegisterController@register');
 
+/* add sittings */
+Route::group(['prefix' => 'sittings'],function(){
+    Route::get('/create','SittingController@create')->name('sitting.create');
+    Route::post('/store','SittingController@store')->name('sitting.store');
+    Route::get('/','SittingController@index')->name('sittings');
+    Route::get('/edit/{id}','SittingController@edit')->name('show_edit_sitting')->where('id','[0-9]+');
+    Route::put('/update/{id}','SittingController@update')->name('update_sitting')->where('id','[0-9]+');
+    Route::get('/delete/{id}','SittingController@delete')->name('delete_sitting')->where('id','[0-9]+');
+});
 
 Route::group(['prefix'=>'courts'], function(){
     Route::get('/', 'CourtController@index')->name('courts');

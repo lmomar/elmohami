@@ -21,6 +21,8 @@ class CreateSittingsTable extends Migration
             $table->string('file_reference', 25);
             $table->foreign('file_reference')->references('file_reference')->on('files')->onDelete('cascade');
             $table->timestamps();
+            
+            
         });
     }
 

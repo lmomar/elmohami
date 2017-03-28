@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html  dir="rtl">
 
 <head>
     <meta charset="utf-8">
@@ -18,7 +18,7 @@
     <link href="{{ asset('template/css/simple-line-icons.css') }}" rel="stylesheet">
     <!-- Main styles for this application -->
     <link href="{{ asset('template/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('bootstrap.min.css') }}" rel="stylesheet">
+    
 </head>
 <!-- BODY options, add following classes to body to change options
 		1. 'compact-nav'     	  - Switch sidebar to minified version (width 50px)
@@ -56,14 +56,7 @@
                             {{ csrf_field() }}
                         </form>
                     </li>
-                     <li>
-                         <a href=""><i class="fa fa-user"></i>
-                         @if(Auth::guard('user')->check())
-                             {{Auth::guard('user')->user()->user_name }}
-                         @else
-                             {{Auth::guard('office')->user()->user_name }}
-                         @endif</a>
-                    </li>
+                     
                 </ul>
             </div>
         </ul>
