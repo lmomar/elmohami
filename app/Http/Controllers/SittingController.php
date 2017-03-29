@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Sitting;
 use App\File;
+use Illuminate\Http\JsonResponse;
 class SittingController extends Controller{
     
     public function create() {
@@ -66,6 +67,7 @@ class SittingController extends Controller{
     public function index() {
         $files = File::select('file_reference','elementary_num')->get();
         $sittings = Sitting::all();
+        
         return view('sittings.index',['sittings' => $sittings])->with('files',$files);
     }
 }

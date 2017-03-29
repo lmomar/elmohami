@@ -51,7 +51,7 @@
 
                                 </tbody>
                                 <tfoot><tr>
-                                        <td colspan="7">عدد الجلسات :<b>5</b></td>
+                                        <td colspan="7">عدد الجلسات :<b>{{ count($sittings)}}</b></td>
 
                                     </tr></tfoot>
                             </table>
@@ -125,36 +125,4 @@
 @endsection
 @section('script')
 <script src="{{ asset('js/function.js') }}"></script>
-<script>
-    $(document).ready(function () {
-        
-        $('#FormAdd').submit(function (event) {
-            event.preventDefault();
-            $.ajax({
-                type: $(this).attr('method'),
-                url: $(this).attr('action'),
-                data: $(this).serialize(),
-                dataType: 'json'
-            })
-                    .done(function (data) {
-                        $('#alertmsg').removeClass('hidden');
-                        $('#myModal').modal('hide');
-                        $('body').removeClass('modal-open');
-                        $('.modal-backdrop').remove();
-                        //window.location.reload();
-                        setTimeout(location.reload.bind(location),2000);
-                    })
-                    .fail(function (data) {
-                        $.each(data.responseJSON, function (key, value) {
-                            var input = '#FormAdd input[name=' + key + ']';
-                            $(input + '+small').text(value);
-                            $(input).parent().addClass('has-error');
-                        });
-                    });
-
-
-        });
-    });
-
-</script>
 @stop

@@ -73,7 +73,7 @@
                     <a class="nav-link" href="{{ route('users') }}"><i class="icon-people"></i>ادارة الحسابات</a>
                 @endif
                 <a class="nav-link" href="{{ route('files') }}"><i class="icon-docs"></i>إدارة الـمـلـفـات</a>
-                <a class="nav-link" href="{{ route('sittings')}}"><i class="icon-calendar"></i>إدارة الجلسات</a>
+                <a class="nav-link" href="{{ route('sittings')}}" id="getSittings"><i class="icon-calendar"></i>إدارة الجلسات</a>
                 <a class="nav-link" href="{{ route('courts') }}"><i class="icon-graduation"></i>إدارة المحاكم</a>
                 <a href="{{ route('logout') }}"
                    onclick="event.preventDefault();
