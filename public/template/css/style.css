@@ -7405,3 +7405,6 @@ base-chart.chart {
       margin-left: 200px !important; } }
 
 /*# sourceMappingURL=style.css.map */
+.hidden {
+  display: none !important;
+}

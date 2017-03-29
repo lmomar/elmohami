@@ -3268,7 +3268,9 @@ a.tag:focus, a.tag:hover {
     top: -2px;
     left: -21px;
     color: inherit; }
-
+.hidden {
+  display: none !important;
+}
 .alert-success {
   background-color: #dff0d8;
   border-color: #d0e9c6;

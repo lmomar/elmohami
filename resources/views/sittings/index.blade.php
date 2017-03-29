@@ -1,74 +1,78 @@
 @extends('layouts.master_page')
 
 @section('content')
-<div class="alert alert-success hidden" id="alertmsg">
-    <p>تمت اضافة الجلسة بنجاح</p>
-</div>
-<div class="container">
-    <div class="panel-group" id="accordion">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">الجلسات</a>
-                </h4>
-            </div>
-            <div id="collapse1" class="panel-collapse collapse in">
-                <div class="panel-body">
-                    <div class="card">
-                        <div class="card-block">
-                            <table class="table table-responsive table-bordered table-striped table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>رقم الجلسة</th>
-                                        <th>الملف</th>
-                                        <th>الاجراء المقبل</th>
-                                        <th>منطوق الحكم</th>
-                                        <th>تاريخ الجلسة</th>
-                                        <th>تاريخ الاضافة</th>
-                                        <th>#</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($sittings as $s)
-                                    <tr>
-                                        <td>{{ $s->sitting_id }}</td>
-                                        <td>{{ $s->file_reference }}</td>
-                                        <td>{{ $s->next_procedure }}</td>
-                                        <td>{{ $s->Verdict }}</td>
-                                        <td>{{ $s->sitting_date }}</td>
-                                        <td>{{ $s->created_at }}</td>
-                                        <td>
-                                            <a href="{{ route('show_edit_sitting',$s->sitting_id)}}"
-                                               class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit" ></i></a>
-                                            <a href="{{ route('delete_sitting',$s->sitting_id)}}"
-                                               class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
+<div class="container-fluid">
+    <div class="animated fadeIn">
+        <div class="alert alert-success hidden" id="alertmsg">
+            <p>تمت اضافة الجلسة بنجاح</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-align-justify"></i> الجلسات 
+                        <a class="btn btn-xs btn-success pull-left" href="#" data-toggle="modal" data-target="#myModal">اضافة جلسة
+                            <i class="fa fa-plus-square"></i>
+                        </a>
+                    </div>
+
+                    <div class="card-block">
+                        <table class="table table-bordered table-striped table-condensed">
+                            <thead>
+                                <tr>                                        
+                                    <th>الملف</th>
+                                    <th>الاجراء المقبل</th>
+                                    <th>منطوق الحكم</th>
+                                    <th>تاريخ الجلسة</th>
+                                    <th>تاريخ الاضافة</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($sittings as $s)
+                                <tr>                          
+                                    <td>{{ $s->file_reference }}</td>
+                                    <td>{{ $s->next_procedure }}</td>
+                                    <td>{{ $s->Verdict }}</td>
+                                    <td>{{ $s->sitting_date }}</td>
+                                    <td>{{ $s->created_at }}</td>
+                                    <td>
+                                        <a href="{{ route('show_edit_sitting',$s->sitting_id)}}"
+                                           class="btn btn-sm btn-primary"><i class="fa fa-pencil" ></i></a>
+                                        <a href="{{ route('delete_sitting',$s->sitting_id)}}"
+                                           class="btn btn-sm btn-danger"><i class="fa fa-remove"></i></a>
+                                    </td>
+                                </tr>
+                                @endforeach
 
 
 
 
-                                </tbody>
-                                <tfoot><tr>
-                                        <td colspan="7">عدد الجلسات :<b>{{ count($sittings)}}</b></td>
+                            </tbody>
+                            <tfoot><tr>
+                                    <td colspan="7">عدد الجلسات :<b>{{ count($sittings)}}</b></td>
 
-                                    </tr></tfoot>
-                            </table>
-                            <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#myModal">
-                                إضافة جلسة
-                            </a>
+                                </tr></tfoot>
+                        </table>
+                        <nav>
+                            <ul class="pagination">
+                                <li class="page-item"><a class="page-link" href="#">السابق</a></li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">1</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                <li class="page-item"><a class="page-link" href="#">التالي</a></li>
 
-                        </div>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
+            <!--/col-->
         </div>
-
-
     </div>
-
-    <!--/col-->
 </div>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
