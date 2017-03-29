@@ -48,6 +48,9 @@
                             <i class="icon-user-follow"></i>
                             اضافة الجلسة
                         </button>
+                        <a class="btn btn-primary" href="{{ route('sittings') }}">
+                            الرجوع الى القائمة
+                        </a>
 
                     </form>
                 </div>

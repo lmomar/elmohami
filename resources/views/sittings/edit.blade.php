@@ -34,21 +34,24 @@
                     <div class="form-group">
                         <div class="col-sm-2"><label>الملف</label></div>
                         <div class="col-sm-10"> <select name="file_reference" class="form-control">
-                                
+
                                 @if ($files)
-                                    @for ($i=0;$i < count($files) ;$i++)
-                                    <option value="{{ $files[$i]->file_reference }}">{{ $files[$i]->file_reference}}</option>
-                                    @endfor
+                                @for ($i=0;$i < count($files) ;$i++)
+                                <option value="{{ $files[$i]->file_reference }}">{{ $files[$i]->file_reference}}</option>
+                                @endfor
                                 @endif
                             </select></div>
 
                     </div>
-
-                    <button type="submit" class="btn  btn-success">
-                        <i class="icon-user-follow"></i>
-                        حفظ الجلسة
-                    </button>
-
+                    <div class="form-group">
+                        <button type="submit" class="btn  btn-success">
+                            <i class="icon-user-follow"></i>
+                            حفظ الجلسة
+                        </button>
+                        <a class="btn btn-primary" href="{{ route('sittings') }}">
+                            الرجوع الى القائمة
+                        </a>
+                    </div>
                     </form>
                 </div>
             </div>

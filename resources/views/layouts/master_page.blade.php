@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  dir="rtl">
+<html dir="rtl">
 
 <head>
     <meta charset="utf-8">
@@ -73,7 +73,7 @@
                     <a class="nav-link" href="{{ route('users') }}"><i class="icon-people"></i>ادارة الحسابات</a>
                 @endif
                 <a class="nav-link" href="{{ route('files') }}"><i class="icon-docs"></i>إدارة الـمـلـفـات</a>
-                <a class="nav-link" href="#"><i class="icon-calendar"></i>إدارة الجلسات</a>
+                <a class="nav-link" href="{{ route('sittings')}}"><i class="icon-calendar"></i>إدارة الجلسات</a>
                 <a class="nav-link" href="{{ route('courts') }}"><i class="icon-graduation"></i>إدارة المحاكم</a>
                 <a href="{{ route('logout') }}"
                    onclick="event.preventDefault();
@@ -181,10 +181,9 @@
 <script src="{{ asset('template/js/libs/jquery.min.js') }}"></script>
 <script src="{{ asset('template/js/libs/tether.min.js') }}"></script>
 <script src="{{ asset('template/js/libs/bootstrap.min.js') }}"></script>
-<script src="{{ asset('template/js/libs/pace.min.js') }}"></script>
+
 
 <!-- Plugins and scripts required by all views -->
-{{--<script src="js/libs/Chart.min.js') }}"></script>--}}
 
 <!-- CoreUI main scripts -->
 
@@ -192,9 +191,9 @@
 
 <!-- Plugins and scripts required by this views -->
 <!-- Custom scripts required by this view -->
-<script src="{{ asset('template/js/views/main.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/jquery.min.js') }}"></script>
+
+
+
 @yield('script')
 
 </body>

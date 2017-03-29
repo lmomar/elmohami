@@ -25,7 +25,7 @@ class SittingController extends Controller{
         $sitting->Verdict = $inputs['Verdict'];
         $sitting->file_reference = $inputs['file_reference'];
         $sitting->save();
-        return redirect()->route('sittings')->with('success','Sitting saved');
+        return response()->json();
                 
     }
     
@@ -59,11 +59,13 @@ class SittingController extends Controller{
             return redirect()->route('sittings')->with('error','Sitting not found');
         }
         Sitting::destroy($id);
-        return redirect()->route('sittings')->with('success','Sitting deleted');
+        return response()->json();
+        //return redirect()->route('sittings')->with('success','Sitting deleted');
     }
     
     public function index() {
+        $files = File::select('file_reference','elementary_num')->get();
         $sittings = Sitting::all();
-        return view('sittings.index',['sittings' => $sittings]);
+        return view('sittings.index',['sittings' => $sittings])->with('files',$files);
     }
 }
