@@ -16,8 +16,7 @@ class CreateFilePartiesTable extends Migration
         Schema::create('file_parties', function (Blueprint $table) {
             $table->integer('file_id')->unsigned();
             $table->integer('part_id')->unsigned();
-            $table->boolean('type');
-            $table->boolean('nature');
+            $table->boolean('part_type');
             $table->foreign('file_id')->references('id')->on('files');
             $table->foreign('part_id')->references('id')->on('parties');
             $table->timestamps();

@@ -62,8 +62,8 @@ class SittingController extends Controller {
     }
 
     public function index() {
-        $files = File::select('id', 'reference')->get();
-        $sittings = DB::table('sittings')->join('files','files.id','sittings.file_id')->select('sittings.*','files.reference')->get();
+        $files = File::select('id', 'file_reference')->get();
+        $sittings = DB::table('sittings')->join('files','files.id','sittings.file_id')->select('sittings.*','files.file_reference')->get();
         return view('sittings.index', ['sittings' => $sittings])->with('files', $files);
     }
     
