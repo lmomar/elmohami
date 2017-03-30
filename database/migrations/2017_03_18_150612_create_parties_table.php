@@ -14,7 +14,7 @@ class CreatePartiesTable extends Migration
     public function up()
     {
         Schema::create('parties', function (Blueprint $table) {
-            $table->increments('part_id');
+            $table->increments('id');
             $table->string('first_name', 25);
             $table->string('last_name', 25);
             $table->string('part_phone', 25);

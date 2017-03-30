@@ -6,9 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sitting extends Model
 {
-    protected $primaryKey = 'sitting_id';
     
     public function file() {
-        return $this->belongsTo('App\File','file_reference');
+        return $this->belongsTo('App\File','file_id');
     }
+    
+    public function procedure(){
+        return $this->hasMany('App\Procedure');
+    }
+        
+    
 }

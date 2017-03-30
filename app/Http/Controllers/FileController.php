@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Court;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\File;
 class FileController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -20,8 +20,9 @@ class FileController extends Controller
      */
     public function index()
     {
-        $courts=Court::all()->where('court_parent','is',null);
-        return view('files.index', compact('courts'));
+        //$courts=Court::all()->where('court_parent','is',null);
+        $files = File::all();
+        return view('files.index',['files' => $files]);
     }
 
     /**

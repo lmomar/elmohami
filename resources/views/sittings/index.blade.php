@@ -21,9 +21,10 @@
                             <thead>
                                 <tr>                                        
                                     <th>الملف</th>
-                                    <th>الاجراء المقبل</th>
-                                    <th>منطوق الحكم</th>
                                     <th>تاريخ الجلسة</th>
+                                    <th>الشعبة</th>
+                                    <th>الطبيعة</th>
+                                    <th>القاعة</th>
                                     <th>تاريخ الاضافة</th>
                                     <th>#</th>
                                 </tr>
@@ -32,14 +33,15 @@
                                 @foreach($sittings as $s)
                                 <tr>                          
                                     <td>{{ $s->file_reference }}</td>
-                                    <td>{{ $s->next_procedure }}</td>
-                                    <td>{{ $s->Verdict }}</td>
                                     <td>{{ $s->sitting_date }}</td>
+                                    <td>{{ $s->devision }}</td>
+                                    <td>{{ $s->nature }}</td>
+                                    <td>{{ $s->hall }}</td>
                                     <td>{{ $s->created_at }}</td>
                                     <td>
-                                        <a href="{{ route('show_edit_sitting',$s->sitting_id)}}"
+                                        <a href="{{ route('show_edit_sitting',$s->id)}}"
                                            class="btn btn-sm btn-primary"><i class="fa fa-pencil" ></i></a>
-                                        <a href="{{ route('delete_sitting',$s->sitting_id)}}"
+                                        <a href="{{ route('delete_sitting',$s->id)}}"
                                            class="btn btn-sm btn-danger"><i class="fa fa-remove"></i></a>
                                     </td>
                                 </tr>
@@ -85,36 +87,34 @@
             <div class="modal-body">
                 {!! Form::open(['route' => 'sitting.store','method' => 'post','class' => 'form-horizontal','id' => 'FormAdd','role' => 'form']) !!}
                 {{ csrf_field() }}
-                <div class="form-group">
+                <div class="form-group row">
+                    <div class="col-sm-2"><label>الملف</label></div>
+                    <div class="col-sm-10"> <select name="file_reference" class="form-control">
+                            @if ($files)
+                            @for ($i=0;$i < count($files) ;$i++)
+                            <option value="{{ $files[$i]->id }}">{{ $files[$i]->file_reference}}</option>
+                            @endfor
+                            @endif
+                        </select></div>
+
+                </div>
+                <div class="form-group row">
                     <div class="col-sm-2"><label>تاريخ الجلسة</label></div>
                     <div class="col-sm-10"><input type="date" class="form-control"
                                                   name="sitting_date"
                                                   value="{{ old('sitting_date') }}" required autofocus></div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-2"><label>الاجراء المقبل</label></div>
-                    <div class="col-sm-10"> <input  type="text" class="form-control"
-                                                    name="next_procedure"
-                                                    value="{{ old('next_procedure') }}" required></div>
-
+                <div class="form-group row">
+                    <div class="col-sm-2"><label>الشعبة</label></div>
+                    <div class="col-sm-10"><input type="text" class="form-control" name="devision"></div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-2"><label>منطوق الحكم</label></div>
-                    <div class="col-sm-10"><input type="text" class="form-control"
-                                                  name="Verdict"
-                                                  value="{{ old('Verdict') }}" required></div>
-
+                <div class="form-group row">
+                    <div class="col-sm-2"><label>الطبيعة</label></div>
+                    <div class="col-sm-10"><input type="text" class="form-control" name="nature"></div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-2"><label>الملف</label></div>
-                    <div class="col-sm-10"> <select name="file_reference" class="form-control">
-                            @if ($files)
-                            @for ($i=0;$i < count($files) ;$i++)
-                            <option value="{{ $files[$i]->file_reference }}">{{ $files[$i]->file_reference}}</option>
-                            @endfor
-                            @endif
-                        </select></div>
-
+                <div class="form-group row">
+                    <div class="col-sm-2"><label>القاعة</label></div>
+                    <div class="col-sm-10"><input type="text" class="form-control" name="hall"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">غلق</button>

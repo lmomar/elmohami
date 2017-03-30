@@ -14,12 +14,11 @@ class CreateFilePartiesTable extends Migration
     public function up()
     {
         Schema::create('file_parties', function (Blueprint $table) {
-            $table->string('file_reference', 25);
-            $table->unsignedInteger('part_id');
+            $table->integer('file_id')->unsigned();
+            $table->integer('part_id')->unsigned();
             $table->boolean('part_type');
-            $table->primary(array('file_reference', 'part_id'));
-            $table->foreign('file_reference')->references('file_reference')->on('files')->onDelete('cascade');
-            $table->foreign('part_id')->references('part_id')->on('parties')->onDelete('cascade');
+            $table->foreign('file_id')->references('id')->on('files');
+            $table->foreign('part_id')->references('id')->on('parties');
             $table->timestamps();
         });
     }

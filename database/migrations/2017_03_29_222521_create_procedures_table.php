@@ -15,7 +15,11 @@ class CreateProceduresTable extends Migration
     {
         Schema::create('procedures', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('type');
+            $table->text('verdict');
+            $table->integer('sitting_id')->unsigned();
             $table->timestamps();
+            $table->foreign('sitting_id')->references('id')->on('sittings');
         });
     }
 

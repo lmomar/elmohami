@@ -18,6 +18,7 @@ $(document).ready(function () {
 
     $('#FormAdd').submit(function (event) {
         event.preventDefault();
+        console.log('submited');
         $.ajax({
             type: $(this).attr('method'),
             url: $(this).attr('action'),

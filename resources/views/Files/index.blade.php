@@ -1,244 +1,132 @@
 @extends('layouts.master_page')
 
 @section('content')
-
-    <div class="container">
-        <div class="panel-group" id="accordion">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">إضافة ملف</a>
-                    </h4>
-                </div>
-                <div id="collapse1" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <form>
-                            <div class="panel-body">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <strong>بطاقة </strong>
-                                        <small>الملف</small>
-                                    </div>
-                                    <div class="card-block">
-                                        <div class="row">
-                                            <div class="form-group col-sm-5">
-                                                <label for="city">المحكمة</label>
-                                                <select id="courts" name="courts" class="form-control">
-                                                    <option value="0">------------</option>
-                                                    @if($courts)
-                                                        @foreach($courts as $court)
-                                                            <option value="{{ $court->court_id }}">{{ $court->court_name }}</option>
-                                                        @endforeach
-                                                    @endif
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-sm-5">
-                                                <label for="sub_courts">&nbsp;</label>
-                                                <select id="sub_courts" name="sub_courts" class="form-control">
-                                                    <option value="0">------------</option>
-
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col-sm-3">
-                                                <label for="city">الرقم المرجعي للملف</label>
-                                                <input type="text" class="form-control" id="company"
-                                                       placeholder="Enter your company name">
-                                            </div>
-                                            <div class="form-group col-sm-3">
-                                                <label for="city">نوع الملف</label>
-                                                <input type="text" class="form-control" id="company"
-                                                       placeholder="Enter your company name">
-                                            </div>
-                                            <div class="form-group col-sm-4">
-                                                <label for="city">الموضوع</label>
-                                                <input type="text" class="form-control" id="company"
-                                                       placeholder="Enter your company name">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col-sm-3">
-                                                <label for="city">رقم الملف بالمحكمة</label>
-                                                <input type="text" class="form-control" id="company"
-                                                       placeholder="Enter your company name">
-                                            </div>
-                                            <div class="form-group col-sm-3">
-                                                <label for="city">تاريخ التسجيل</label>
-                                                <input class="form-control en" type="date"
-                                                       value="2011-08-19T13:45:00"
-                                                       id="example-datetime-local-input">
-                                            </div>
-                                            <div class="form-group col-sm-4">
-                                                <label for="city">المستشار/ القاضي المقرر</label>
-                                                <input type="text" class="form-control" id="company"
-                                                       placeholder="Enter your company name">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col-sm-3">
-                                                <input type="submit" class="btn btn-primary" value="إضافة ملف"
-                                                       id="submit">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+<div class="container-fluid">
+    <div class="animated fadeIn">
+        <div class="alert alert-success hidden" id="alertmsg">
+            <p>تمت اضافة الملف بنجاح</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-align-justify"></i> الملفات 
+                        <a class="btn btn-xs btn-success pull-left" href="#" data-toggle="modal" data-target="#myModal">اضافة ملف
+                            <i class="fa fa-plus-square"></i>
+                        </a>
                     </div>
 
-
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"> لائحة الأطراف</a>
-                </h4>
-            </div>
-            <div id="collapse2" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <table class="table table-striped en">
-                        <thead>
-                        <tr>
-                            <th>النوع</th>
-                            <th>الصفة</th>
-                            <th>الإسم الكامل</th>
-                            <th>الهاتف</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {{--@if($courts)--}}
-                        {{--@foreach($courts as $court)--}}
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-
-                        {{--@endforeach--}}
-                        {{--@endif--}}
-                        </tbody>
-                    </table>
-                    <a class="btn btn-link" href="{{ route('court.create') }}">
-                        <button type="submit" class="btn btn-primary p-x-2">إضافة طرف</button>
-                    </a>
-                </div>
-            </div>
-        </div>
+                    <div class="card-block">
+                        <table class="table table-bordered table-striped table-condensed">
+                            <thead>
+                                <tr>                                        
+                                    <th>الملف</th>
+                                    <th>تاريخ الجلسة</th>
+                                    <th>الشعبة</th>
+                                    <th>الطبيعة</th>
+                                    <th>القاعة</th>
+                                    <th>تاريخ الاضافة</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($sittings as $s)
+                                <tr>                          
+                                    <td>{{ $s->file_reference }}</td>
+                                    <td>{{ $s->sitting_date }}</td>
+                                    <td>{{ $s->devision }}</td>
+                                    <td>{{ $s->nature }}</td>
+                                    <td>{{ $s->hall }}</td>
+                                    <td>{{ $s->created_at }}</td>
+                                    <td>
+                                        <a href="{{ route('show_edit_sitting',$s->id)}}"
+                                           class="btn btn-sm btn-primary"><i class="fa fa-pencil" ></i></a>
+                                        <a href="{{ route('delete_sitting',$s->id)}}"
+                                           class="btn btn-sm btn-danger"><i class="fa fa-remove"></i></a>
+                                    </td>
+                                </tr>
+                                @endforeach
 
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"> لائحة الإجراءات</a>
-                </h4>
-            </div>
-            <div id="collapse3" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <div class="card">
-                        <div class="card-block">
-                            <table class="table table-striped en">
-                                <thead>
-                                <tr>
-                                    <th>تاريخ الإجراء</th>
-                                    <th>نوع الإجراء</th>
-                                    <th>القرار</th>
-                                    <th>تاريخ الجلسة المقبلة</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {{--@if($courts)--}}
-                                {{--@foreach($courts as $court)--}}
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
 
-                                {{--@endforeach--}}
-                                {{--@endif--}}
-                                </tbody>
-                            </table>
-                            <a class="btn btn-link" href="{{ route('court.create') }}">
-                                <button type="submit" class="btn btn-primary p-x-2">إضافة إجراء</button>
-                            </a>
 
-                        </div>
+                            </tbody>
+                            <tfoot><tr>
+                                    <td colspan="7">عدد الجلسات :<b>{{ count($sittings)}}</b></td>
+
+                                </tr></tfoot>
+                        </table>
+                        <nav>
+                            <ul class="pagination">
+                                <li class="page-item"><a class="page-link" href="#">السابق</a></li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">1</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                <li class="page-item"><a class="page-link" href="#">التالي</a></li>
+
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
+            <!--/col-->
         </div>
     </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">اضافة جلسة</h4>
+            </div>
+            <div class="modal-body">
+                {!! Form::open(['route' => 'sitting.store','method' => 'post','class' => 'form-horizontal','id' => 'FormAdd','role' => 'form']) !!}
+                {{ csrf_field() }}
+                <div class="form-group row">
+                    <div class="col-sm-2"><label>الملف</label></div>
+                    <div class="col-sm-10"> <select name="file_reference" class="form-control">
+                            @if ($files)
+                            @for ($i=0;$i < count($files) ;$i++)
+                            <option value="{{ $files[$i]->id }}">{{ $files[$i]->file_reference}}</option>
+                            @endfor
+                            @endif
+                        </select></div>
 
-    <!--/col-->
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2"><label>تاريخ الجلسة</label></div>
+                    <div class="col-sm-10"><input type="date" class="form-control"
+                                                  name="sitting_date"
+                                                  value="{{ old('sitting_date') }}" required autofocus></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2"><label>الشعبة</label></div>
+                    <div class="col-sm-10"><input type="text" class="form-control" name="devision"></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2"><label>الطبيعة</label></div>
+                    <div class="col-sm-10"><input type="text" class="form-control" name="nature"></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2"><label>القاعة</label></div>
+                    <div class="col-sm-10"><input type="text" class="form-control" name="hall"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">غلق</button>
+                    <button type="submit" class="btn btn-primary">حفظ الجلسة</button>
+                </div>
+                {!! Form::close() !!}
+            </div>
+
+        </div>
     </div>
-    </div>
+</div>
 @endsection
-
 @section('script')
-    <script>
-        $('#courts').on('change', function (e) {
-            console.log(e);
-            var parent_id = e.target.value;
 
-            $.get('/sub_courts?parent_id=' + parent_id, function (data) {
-                $('#sub_courts').empty();
-                $.each(data, function (index, subCatObj) {
-                    $('#sub_courts').append('<option value="' + subCatObj.court_id + '">' + subCatObj.court_name + '</option>');
-                });
-            });
-        });
-    </script>
-@endsection
+@stop
