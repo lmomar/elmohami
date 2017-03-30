@@ -15,11 +15,13 @@ class CreateProceduresTable extends Migration
     {
         Schema::create('procedures', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type');
-            $table->text('verdict');
-            $table->integer('sitting_id')->unsigned();
+            $table->dateTime('proc_date')->nullable();
+            $table->string('type')->default("-");
+            $table->text('decision')->nullable();
+            $table->dateTime('next_sitting')->nullable();
+            $table->integer('file_id')->unsigned();
             $table->timestamps();
-            $table->foreign('sitting_id')->references('id')->on('sittings');
+            $table->foreign('file_id')->references('id')->on('files');
         });
     }
 

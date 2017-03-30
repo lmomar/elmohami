@@ -32,11 +32,11 @@
                             <tbody>
                                 @foreach($files as $f)
                                 <tr>                          
-                                    <td>{{ $f->file_reference }}</td>
-                                    <td>{{ $f->sitting_date }}</td>
+                                    <td>{{ $f->reference }}</td>
+                                    <td>{{ $f->type }}</td>
                                     <td>{{ $f->devision }}</td>
-                                    <td>{{ $f->nature }}</td>
-                                    <td>{{ $f->hall }}</td>
+                                    <td>{{ $f->subject }}</td>
+                                    <td>{{ $f->registration_date }}</td>
                                     <td>{{ $f->created_at }}</td>
                                     <td>
                                         <a href="{{ route('show_edit_sitting',$s->id)}}"

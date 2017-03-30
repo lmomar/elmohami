@@ -54,10 +54,9 @@ class LoginController extends Controller
     {
         $user_name = $request->input('user_name');
         $password = $request->input('password');
-        
+
         if (auth()->guard('office')->attempt(['user_name' => $user_name, 'password' => $password ]))
         {
-            
             Auth::login($this->guard('office')->user());
             return redirect()->intended(route('dashboard'));
         }

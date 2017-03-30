@@ -14,11 +14,12 @@
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
+                                <input id="user_name" type="text" placeholder="إسم المستعمل"
+                                       class="form-control" name="user_name" value="{{ old('user_name') }}" required autofocus>
+                                </i>
+                                @if ($errors->has('user_name') || $errors->has('password'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>اسم المستخدم أو كلمة المرور غير صحيحة</strong>
                                     </span>
                                 @endif
                             </div>

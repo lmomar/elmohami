@@ -19,10 +19,10 @@
     <title>CoreUI Bootstrap 4 Admin Template</title>
     <!-- Icons -->
     <!-- Icons -->
-    <link href="{{ asset('template/css/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('template/css/simple-line-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/simple-line-icons.css') }}" rel="stylesheet">
     <!-- Main styles for this application -->
-    <link href="{{ asset('template/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('style.css') }}" rel="stylesheet">
 
 </head>
 
@@ -89,10 +89,10 @@
     </div>
 </div>
 <!-- Bootstrap and necessary plugins -->
-<script src="{{ asset('template/js/libs/jquery.min.js') }}"></script>
-<script src="{{ asset('template/js/libs/tether.min.js') }}"></script>
-<script src="{{ asset('template/js/libs/bootstrap.min.js') }}"></script>
-<script src="{{ asset('template/js/libs/pace.min.js') }}"></script>
+<script src="{{ asset('js/libs/jquery.min.js') }}"></script>
+<script src="{{ asset('js/libs/tether.min.js') }}"></script>
+<script src="{{ asset('js/libs/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/libs/pace.min.js') }}"></script>
 
 
 <script>

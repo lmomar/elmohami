@@ -32,7 +32,7 @@
                             <tbody>
                                 @foreach($sittings as $s)
                                 <tr>                          
-                                    <td>{{ $s->file_reference }}</td>
+                                    <td>{{ $s->file_id }}</td>
                                     <td>{{ $s->sitting_date }}</td>
                                     <td>{{ $s->devision }}</td>
                                     <td>{{ $s->nature }}</td>
