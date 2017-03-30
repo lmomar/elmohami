@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Office;
 
-use App\User;
+use App\Office;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -28,16 +27,23 @@ class RegisterController extends Controller
      *
      * @var string
      */
-//    protected $redirectTo = 'office/dashboard';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+
+    public function showRegistrationForm()
+    {
+        return view('office.register');
+    }
+
+
     public function __construct()
     {
-        $this->middleware('auth:office', ['except' => 'logout']);
+//        $this->middleware('auth:office');
     }
 
     /**
@@ -49,9 +55,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'user_name' => 'required|max:255|unique:users',
-            'email' => 'required|email|max:255|unique:users',
+            'code' => 'required|min:6|unique:offices',
+            'email' => 'required|email|max:255|unique:offices',
+            'user_name' => 'required|max:255|unique:offices',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -64,19 +70,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        return Office::create([
+            'code' => $data['code'],
             'user_name' => $data['user_name'],
             'email' => $data['email'],
+            'address' => $data['address'],
             'phone' => $data['phone'],
-            'office_id' => $data['office_id'],
             'password' => bcrypt($data['password']),
         ]);
     }
-
-    protected function guard()
-    {
-        return Auth::guard('office');
-    }
-
 }

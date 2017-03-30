@@ -37,7 +37,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:office', ['except' => 'logout']);
+        $this->middleware('my.auth', ['except' => 'logout']);
     }
 
     /**
