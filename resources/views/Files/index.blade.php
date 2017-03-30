@@ -30,14 +30,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($sittings as $s)
+                                @foreach($files as $f)
                                 <tr>                          
-                                    <td>{{ $s->file_reference }}</td>
-                                    <td>{{ $s->sitting_date }}</td>
-                                    <td>{{ $s->devision }}</td>
-                                    <td>{{ $s->nature }}</td>
-                                    <td>{{ $s->hall }}</td>
-                                    <td>{{ $s->created_at }}</td>
+                                    <td>{{ $f->file_reference }}</td>
+                                    <td>{{ $f->sitting_date }}</td>
+                                    <td>{{ $f->devision }}</td>
+                                    <td>{{ $f->nature }}</td>
+                                    <td>{{ $f->hall }}</td>
+                                    <td>{{ $f->created_at }}</td>
                                     <td>
                                         <a href="{{ route('show_edit_sitting',$s->id)}}"
                                            class="btn btn-sm btn-primary"><i class="fa fa-pencil" ></i></a>
@@ -52,7 +52,7 @@
 
                             </tbody>
                             <tfoot><tr>
-                                    <td colspan="7">عدد الجلسات :<b>{{ count($sittings)}}</b></td>
+                                    <td colspan="7">عدد الملفات :<b>{{ count($files)}}</b></td>
 
                                 </tr></tfoot>
                         </table>
