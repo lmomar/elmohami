@@ -41,10 +41,13 @@ Route::group(['prefix' => 'sittings'],function(){
     Route::get('/delete/{id}','SittingController@delete')->name('delete_sitting')->where('id','[0-9]+');
 });
 
+/* courts */
 Route::group(['prefix'=>'courts'], function(){
     Route::get('/', 'CourtController@index')->name('courts');
+    Route::get('/get/{id}','CourtController@getCourts')->name('getCourtsByParent')->where('id','[0-9]+');
     Route::get('/create','CourtController@create')->name('court.create');
     Route::post('/store','CourtController@store')->name('court.store');
+    Route::get('/delete/{id}','CourtController@delete')->name('court.delete')->where('id','[0-9]+');
 });
 
 Route::group(['prefix'=>'files'], function(){
