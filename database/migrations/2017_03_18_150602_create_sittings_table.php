@@ -14,8 +14,7 @@ class CreateSittingsTable extends Migration {
     public function up() {
         Schema::create('sittings', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('sitting_date');
-            $table->string('devision')->nullable(); /* الشعبة */
+            $table->dateTime('sitting_date')->nullable();
             $table->string('nature')->nullable(); /* الطبيعة */
             $table->string('hall')->nullable(); /* القاعة */
             $table->integer('file_id')->unsigned();

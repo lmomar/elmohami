@@ -18,8 +18,8 @@ class CreateOfficeTable extends Migration
             $table->string('code')->unique();
             $table->string('user_name')->unique();
             $table->string('email')->unique();
-            $table->string('address', 255);
-            $table->string('phone', 18);
+            $table->text('address');
+            $table->string('phone')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

@@ -13,10 +13,11 @@ class CreateFilePartiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('file_parties', function (Blueprint $table) {
+        Schema::create('file_partie', function (Blueprint $table) {
             $table->integer('file_id')->unsigned();
             $table->integer('part_id')->unsigned();
-            $table->boolean('part_type');
+            $table->boolean('type');
+            $table->boolean('nature');
             $table->foreign('file_id')->references('id')->on('files');
             $table->foreign('part_id')->references('id')->on('parties');
             $table->timestamps();

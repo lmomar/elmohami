@@ -15,15 +15,21 @@ class CreateFilesTable extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('file_reference', 25);
-            $table->string('elementary_num', 25);
-            $table->string('decision_judge', 25);
-            $table->string('appellate_num', 25);
-            $table->string('appellate_judge', 25);
+            $table->string('reference');
+            $table->string('type')->nullable();
+            $table->string('division')->nullable();
+            $table->string('subject')->nullable();
+            $table->string('elementary_num')->nullable();
+            $table->string('decision_judge')->nullable();
+            $table->date('registration_date')->nullable();
+            $table->text('verdict');
+            $table->date('verdict_date')->nullable();
+            $table->string('appellate_num')->nullable();
+            $table->string('appellate_judge')->nullable();
             $table->unsignedInteger('office_id');
             $table->unsignedInteger('court_id');
             $table->foreign('office_id')->references('id')->on('offices')->onDelete('cascade');
-            $table->foreign('court_id')->references('court_id')->on('courts')->onDelete('cascade');
+            $table->foreign('court_id')->references('id')->on('courts')->onDelete('cascade');
             $table->timestamps();
         });
     }

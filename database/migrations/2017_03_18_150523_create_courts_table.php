@@ -14,9 +14,9 @@ class CreateCourtsTable extends Migration
     public function up()
     {
         Schema::create('courts', function (Blueprint $table) {
-            $table->increments('court_id');
-            $table->string('court_name', 50);
-            $table->unsignedInteger('parent_id');
+            $table->increments('id');
+            $table->string('name');
+            $table->unsignedInteger('parent_id')->nullable();
             $table->timestamps();
         });
     }

@@ -26,4 +26,12 @@ class Office extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function users(){
+        return $this->hasMany('App\User');
+    }
+    
+    public function files() {
+        return $this->hasMany('App\File');
+    }
 }
