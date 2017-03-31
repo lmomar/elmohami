@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Sitting;
 use App\File;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 
 class SittingController extends Controller {

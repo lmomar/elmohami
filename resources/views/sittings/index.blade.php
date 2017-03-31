@@ -128,5 +128,5 @@
 </div>
 @endsection
 @section('script')
-<script src="{{ asset('js/function.js') }}"></script>
+<script src="{{ asset('js/function2.js') }}"></script>
 @stop

@@ -39,9 +39,9 @@
                                     <td>{{ $f->registration_date }}</td>
                                     <td>{{ $f->created_at }}</td>
                                     <td>
-                                        <a href="{{ route('show_edit_sitting',$s->id)}}"
+                                        <a href="{{ route('show_edit_sitting',$f->id)}}"
                                            class="btn btn-sm btn-primary"><i class="fa fa-pencil" ></i></a>
-                                        <a href="{{ route('delete_sitting',$s->id)}}"
+                                        <a href="{{ route('delete_sitting',$f->id)}}"
                                            class="btn btn-sm btn-danger"><i class="fa fa-remove"></i></a>
                                     </td>
                                 </tr>

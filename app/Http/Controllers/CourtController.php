@@ -4,30 +4,42 @@ namespace App\Http\Controllers;
 
 use App\Court;
 use Illuminate\Http\Request;
-
+use Illuminate\Http\JsonResponse;
 class CourtController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
+    
     public function index()
     {
-        $courts = Court::all();
-        return view('courts.index', compact('courts'));
+        $courts_parents = Court::where('parent_id','0')->get();
+        //dd($courts_parents);
+        $courts = Court::where('parent_id','!=','0')->get();
+        //dd($courts);
+        return view('courts.index',['courts_parents' => $courts_parents,'courts' => $courts]);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * 
+     * @param type $id => parent_id
+     * @return JsonResponse
      */
+    public function getCourts($id){
+        $courts = Court::where('parent_id',$id)->get()->toArray();
+        if(empty($courts))
+        {
+            return new JsonResponse('not found', \Illuminate\Http\Response::HTTP_NOT_FOUND);
+        }
+        //dd($courts);
+        return response()->json(['courts' => $courts]);
+        
+    }
+    
+    
     public function create()
     {
         return view('courts.create');
@@ -41,19 +53,16 @@ class CourtController extends Controller
      */
     public function store(Request $request)
     {
-
-        // store
+        $this->validate($request, [
+            'court_name'
+        ]);
+        $inputs = $request->all();
+        
         $court = new Court();
-        $court->court_name = $request->court_name;
-        $court->court_address = $request->court_address;
-        $court->court_city = $request->court_city;
-        $court->court_phone = $request->court_phone;
-        $court->court_parent = $request->court_parent;
+        $court->court_name = $inputs['court_name'];
+        $court->parent_id = $inputs['parent_id'];
         $court->save();
-
-        // redirect
-        //Session::flash('message', 'Successfully created nerd!');
-        return redirect()->intended('courts');
+        return response()->json();
 
     }
 
@@ -91,14 +100,11 @@ class CourtController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    public function delete($id)
     {
-        //
+        $court = Court::findOrFail($id);
+        //Court::destroy($id);
+        return response()->json();
     }
 }

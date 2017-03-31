@@ -1,107 +1,103 @@
 @extends('layouts.master_page')
 
 @section('content')
-
-<div class="container">
-    <div class="panel-group" id="accordion">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">محاكم الإستئناف</a>
-                </h4>
-            </div>
-            <div id="collapse1" class="panel-collapse collapse in">
-                <div class="panel-body">
-                    <div class="card">
-                        <div class="card-block">
-                            <table class="table table-responsive table-bordered table-striped table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>رقم الجلسة</th>
-                                        <th>الملف</th>
-                                        <th>الاجراء المقبل</th>
-                                        <th>منطوق الحكم</th>
-                                        <th>تاريخ الجلسة</th>
-                                        <th>تاريخ الاضافة</th>
-                                        <th>#</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($sittings as $s)
-                                    <tr>
-                                        <td>{{ $s->id }}</td>
-                                        <td>{</td>
-                                    </tr>
-                                    @endforeach
-                                    
-                                        <td>
-                                            <p data-placement="top" data-toggle="tooltip" title="تعديل" data-original-title="Edit" class="p-btn">
-                                                <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit">
-                                                    <span class="glyphicon glyphicon-pencil"></span></button></p>
-                                            <p data-placement="top" data-toggle="tooltip" title="حذف" data-original-title="Delete" class="p-btn">
-                                                <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete">
-                                                    <span class="glyphicon glyphicon-trash"></span></button></p>
-                                        </td>
-                                    
-
-                                </tbody>
-                                <tfoot><tr>
-                                        <td colspan="7">عدد الجلسات :<b>5</b></td>
-
-                                    </tr></tfoot>
-                            </table>
-                            <a class="btn btn-link" href="{{ route('court.create') }}">
-                                <button type="submit" class="btn btn-primary p-x-2">إضافة محكمة</button>
-                            </a>
-
+<div class="container-fluid">
+    <div class="animated fadeIn">
+        <div class="alert alert-success hidden" id="alertmsg">
+            <p>تمت اضافة المحكمة بنجاح</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-align-justify"></i> الجلسات 
+                        <a class="btn btn-xs btn-success pull-left" href="#" data-toggle="modal" data-target="#myModal">اضافة محكمة
+                            <i class="fa fa-plus-square"></i>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label>اختيار الفرع</label>
+                            </div>
                         </div>
+                        <div class="col-sm-2">
+                            @if($courts_parents)
+                            <select name="filter_parent" id="filter_parent" class="form-control">
+                                @foreach($courts_parents as $cp)
+                                <option value="{{ $cp->court_id }}">{{ $cp->court_name }}</option>
+                                @endforeach
+                            </select>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="card-block">
+                        <table class="table table-bordered table-striped table-condensed" id="courts">
+                            <thead>
+                                <tr>                                        
+                                    <th>الرقم</th>
+                                    <th>المحكمة</th>
+                                    <th>تاريخ الاضافة</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                            <tfoot><tr>
+                                    <td colspan="7">عدد المحاكم :<b id="count">0</b></td>
+
+                                </tr></tfoot>
+                        </table>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">المحاكم الإبتدائية</a>
-                </h4>
-            </div>
-            <div id="collapse2" class="panel-collapse collapse">
-                <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">المحاكــم الإداريــة
-                        والتجارية</a>
-                </h4>
-            </div>
-            <div id="collapse3" class="panel-collapse collapse">
-                <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">أقســام قضــاء الأســرة</a>
-                </h4>
-            </div>
-            <div id="collapse4" class="panel-collapse collapse">
-                <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </div>
-            </div>
+            <!--/col-->
         </div>
     </div>
-
-    <!--/col-->
 </div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">اضافة محكمة</h4>
+            </div>
+            <div class="modal-body">
+                {!! Form::open(['route' => 'court.store','method' => 'post','class' => 'form-horizontal','id' => 'FormAdd','role' => 'form']) !!}
+                {{ csrf_field() }}
+                <div class="form-group row">
+                    <div class="col-sm-2"><label>فرع المحكمة</label></div>
+                    <div class="col-sm-10">
+                        @if($courts_parents)
+                        <select name="parent_id" id="court_parent">
+                            @foreach($courts_parents as $cp)
+                            <option value="{{ $cp->court_id }}">{{ $cp->court_name }}</option>
+                            @endforeach
+                        </select>
+                        @endif
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2"><label>اسم المحكمة</label></div>
+                    <div class="col-sm-10"><input type="text" class="form-control"
+                                                  name="court_name"
+                                                  value="{{ old('court_name') }}">
+                        <small></small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">غلق</button>
+                    <button type="submit" class="btn btn-primary">حفظ الجلسة</button>
+                </div>
+                {!! Form::close() !!}
+            </div>
+
+        </div>
+    </div>
 </div>
 @endsection
+@section('script')
+<script src="{{ asset('js/function2.js') }}"></script>
+@stop

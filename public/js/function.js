@@ -43,4 +43,35 @@ $(document).ready(function () {
 
 
     });
+
+   $('select#court_parent').on('change',function(){
+       //console.log('test');
+       $.ajax({
+           url:'courts/get/' + $(this).val(),
+           type : 'get',
+           dataType : 'json'
+       })
+               .done(function(data){
+                   console.log('append data');
+           $('table#courts tbody tr').remove();
+           for(var key in data)
+           {
+               
+              $('#count').html(Object.keys(data[key]).length);
+               for(var i in data[key]){
+                   //console.log(data[key][i]);
+                    
+                   //console.log(data[key][i].court_id);
+                   
+                   $('table#courts').append(
+                      '<tr><td>' + data[key][i].court_id + '</td><td>' + data[key][i].court_name + '</td><td>' + data[key][i].created_at + '</td><td>' + 
+                      '<a class="btn btn-sm btn-primary" href="edit/' + data[key][i].court_id +'"><i class="fa fa-pencil" ></i></a>' +
+                      '<a class="btn btn-sm btn-danger" href="delete/' + data[key][i].court_id +'"><i class="fa fa-pencil" ></i></a>' +
+                                   '</tr>'
+                           );
+               }
+           }
+           
+       })
+   });
 });
