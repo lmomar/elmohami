@@ -6,6 +6,7 @@ use App\Court;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\File;
+
 class FileController extends Controller
 {
 
@@ -17,7 +18,7 @@ class FileController extends Controller
     
     public function index()
     {
-        $files = File::all();
+        $files = File::paginate(2);
         $courts = Court::all();
         return view('files.index',['files' => $files,'courts' => $courts]);
     }
@@ -49,7 +50,7 @@ class FileController extends Controller
     
     public function liste()
     {
-        $files = File::all();
+        $files = File::paginate(2);
         
         return response()->json(['files' => $files]);
     }
