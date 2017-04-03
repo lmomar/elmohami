@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class SittingController extends Controller {
 
     public function create() {
-        $files = File::select('id', 'file_reference')->get();
+        $files = File::select('id', 'reference')->get();
         return view('sittings.create')->with('files', $files);
     }
 
@@ -23,7 +23,7 @@ class SittingController extends Controller {
         $sitting->sitting_date = $inputs['sitting_date'];
         $sitting->devision = $inputs['devision'];
         $sitting->nature = $inputs['nature'];
-        $sitting->file_id = $inputs['file_reference'];
+        $sitting->file_id = $inputs['file_id'];
         $sitting->save();
         //dd($sitting);
         return response()->json();
@@ -31,7 +31,7 @@ class SittingController extends Controller {
 
     public function edit($id) {
         $sitting = Sitting::findOrFail($id);
-        $files = File::select('id', 'file_reference')->get();
+        $files = File::select('id', 'reference')->get();
         return view('sittings.edit', ['sitting' => $sitting])->with('files', $files);
     }
 
@@ -61,8 +61,8 @@ class SittingController extends Controller {
     }
 
     public function index() {
-        $files = File::select('id', 'file_reference')->get();
-        $sittings = DB::table('sittings')->join('files','files.id','sittings.file_id')->select('sittings.*','files.file_reference')->get();
+        $files = File::select('id', 'reference')->get();
+        $sittings = DB::table('sittings')->join('files','files.id','sittings.file_id')->select('sittings.*','files.reference')->get();
         return view('sittings.index', ['sittings' => $sittings])->with('files', $files);
     }
     

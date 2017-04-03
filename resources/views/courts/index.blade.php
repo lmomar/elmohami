@@ -25,7 +25,7 @@
                             @if($courts_parents)
                             <select name="filter_parent" id="filter_parent" class="form-control">
                                 @foreach($courts_parents as $cp)
-                                <option value="{{ $cp->court_id }}">{{ $cp->court_name }}</option>
+                                <option value="{{ $cp->id }}">{{ $cp->name }}</option>
                                 @endforeach
                             </select>
                             @endif
@@ -72,7 +72,7 @@
                         @if($courts_parents)
                         <select name="parent_id" id="court_parent">
                             @foreach($courts_parents as $cp)
-                            <option value="{{ $cp->court_id }}">{{ $cp->court_name }}</option>
+                            <option value="{{ $cp->id }}">{{ $cp->name }}</option>
                             @endforeach
                         </select>
                         @endif
@@ -82,8 +82,8 @@
                 <div class="form-group row">
                     <div class="col-sm-2"><label>اسم المحكمة</label></div>
                     <div class="col-sm-10"><input type="text" class="form-control"
-                                                  name="court_name"
-                                                  value="{{ old('court_name') }}">
+                                                  name="name"
+                                                  value="{{ old('name') }}">
                         <small></small>
                     </div>
                 </div>

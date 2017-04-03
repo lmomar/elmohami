@@ -13,80 +13,61 @@ class FileController extends Controller
     {
         //$this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    
     public function index()
     {
-        //$courts=Court::all()->where('court_parent','is',null);
         $files = File::all();
-        return view('files.index',['files' => $files]);
+        $courts = Court::all();
+        return view('files.index',['files' => $files,'courts' => $courts]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+   
     public function store(Request $request)
     {
-        //
+        $file = new File();
+        $this->validate($request, [
+            'reference',
+            'registration_date'
+        ]);
+        $inputs = $request->all();
+        $file->reference = $inputs['reference'];
+        /* relations */
+        $file->court_id = $inputs['courts'];
+        $file->office_id = '1'; /* get office id from connected user */
+        
+        $file->registration_date = $inputs['registration_date'];
+        $file->type = $inputs['type'];
+        $file->subject = $inputs['subject'];
+        $file->elementary_num =$inputs['elementary_num'];
+        $file->save();
+        return response()->json();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    
+    public function liste()
     {
-        //
+        $files = File::all();
+        
+        return response()->json(['files' => $files]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    
+    public function delete($id)
     {
         //
     }

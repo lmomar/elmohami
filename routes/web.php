@@ -50,10 +50,13 @@ Route::group(['prefix'=>'courts'], function(){
     Route::get('/delete/{id}','CourtController@delete')->name('court.delete')->where('id','[0-9]+');
 });
 
+/* files */
+
 Route::group(['prefix'=>'files'], function(){
     Route::get('/', 'FileController@index')->name('files');
-//    Route::get('/create','CourtController@create')->name('court.create');
-//    Route::post('/store','CourtController@store')->name('court.store');
+    Route::post('/store','FileController@store')->name('file.store');
+    Route::get('/delete/{id}','FileController@delete')->name('file.delete')->where('id','[0-9]+');
+    Route::get('/liste','FileController@liste')->name('files_list_json');
 });
 
 Route::group(['prefix'=>'users'], function(){

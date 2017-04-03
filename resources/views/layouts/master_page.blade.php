@@ -198,7 +198,6 @@
 
         <!-- CoreUI main scripts -->
 
-        <script src="{{ asset('template/js/app.js') }}"></script>
 
         <!-- Plugins and scripts required by this views -->
         <!-- Custom scripts required by this view -->

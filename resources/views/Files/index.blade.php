@@ -17,42 +17,26 @@
                     </div>
 
                     <div class="card-block">
-                        <table class="table table-bordered table-striped table-condensed">
+                        <table class="table table-bordered table-striped table-condensed" id="files">
                             <thead>
                                 <tr>                                        
                                     <th>الملف</th>
-                                    <th>المحكمة</th>
+                                    <th>نوع الملف</th>
                                     <th>الشعبة</th>
-                                    <th>الطبيعة</th>
-                                    <th>القاعة</th>
-                                    <th>تاريخ الاضافة</th>
+                                    <th>الموضوع</th>
+                                    <th>تاريخ التسجيل</th>
                                     <th>#</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($files as $f)
-                                <tr>                          
-                                    <td>{{ $f->reference }}</td>
-                                    <td>{{ $f->type }}</td>
-                                    <td>{{ $f->devision }}</td>
-                                    <td>{{ $f->subject }}</td>
-                                    <td>{{ $f->registration_date }}</td>
-                                    <td>{{ $f->created_at }}</td>
-                                    <td>
-                                        <a href="{{ route('show_edit_sitting',$f->id)}}"
-                                           class="btn btn-sm btn-primary"><i class="fa fa-pencil" ></i></a>
-                                        <a href="{{ route('delete_sitting',$f->id)}}"
-                                           class="btn btn-sm btn-danger"><i class="fa fa-remove"></i></a>
-                                    </td>
-                                </tr>
-                                @endforeach
+                               
 
 
 
 
                             </tbody>
                             <tfoot><tr>
-                                    <td colspan="7">عدد الملفات :<b>{{ count($files)}}</b></td>
+                                    <td colspan="7">عدد الملفات :<b id="count"></b></td>
 
                                 </tr></tfoot>
                         </table>
@@ -85,36 +69,42 @@
                 <h4 class="modal-title" id="myModalLabel">اضافة جلسة</h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'sitting.store','method' => 'post','class' => 'form-horizontal','id' => 'FormAdd','role' => 'form']) !!}
+                {!! Form::open(['route' => 'file.store','method' => 'post','class' => 'form-horizontal','id' => 'FormAdd','role' => 'form']) !!}
                 {{ csrf_field() }}
                 <div class="form-group row">
-                    <div class="col-sm-2"><label>الملف</label></div>
-                    <div class="col-sm-10"> <select name="file_reference" class="form-control">
-                            @if ($files)
-                            @for ($i=0;$i < count($files) ;$i++)
-                            <option value="{{ $files[$i]->id }}">{{ $files[$i]->file_reference}}</option>
+                    <div class="col-sm-2"><label>رقم الملف</label></div>
+                    <div class="col-sm-10"><input type="text" class="form-control" name="reference"></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2"><label>تاريخ التسجيل</label></div>
+                    <div class="col-sm-10"><input type="date" class="form-control"
+                                                  name="registration_date"
+                                                  value="{{ old('registration_date') }}" required></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2"><label>المحكمة</label></div>
+                    <div class="col-sm-10"> <select name="courts" class="form-control">
+                            @if ($courts)
+                            @for ($i=0;$i < count($courts) ;$i++)
+                            <option value="{{ $courts[$i]->id }}">{{ $courts[$i]->name}}</option>
                             @endfor
                             @endif
                         </select></div>
 
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-2"><label>تاريخ الجلسة</label></div>
-                    <div class="col-sm-10"><input type="date" class="form-control"
-                                                  name="sitting_date"
-                                                  value="{{ old('sitting_date') }}" required autofocus></div>
+                    <div class="col-sm-2"><label>نوع الملف</label></div>
+                    <div class="col-sm-10"><input type="text" class="form-control"
+                                                  name="type"
+                                                  value="{{ old('type') }}" required></div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-2"><label>الشعبة</label></div>
-                    <div class="col-sm-10"><input type="text" class="form-control" name="devision"></div>
+                    <div class="col-sm-2"><label>الموضوع</label></div>
+                    <div class="col-sm-10"><input type="text" class="form-control" name="subject"></div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-2"><label>الطبيعة</label></div>
-                    <div class="col-sm-10"><input type="text" class="form-control" name="nature"></div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-2"><label>القاعة</label></div>
-                    <div class="col-sm-10"><input type="text" class="form-control" name="hall"></div>
+                    <div class="col-sm-2"><label> الرقم الابتدائي</label></div>
+                    <div class="col-sm-10"><input type="text" class="form-control" name="elementary_num"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">غلق</button>
@@ -128,5 +118,5 @@
 </div>
 @endsection
 @section('script')
-
+<script src="{{ asset('js/files.js') }}"></script>
 @stop
