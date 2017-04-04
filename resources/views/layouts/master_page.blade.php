@@ -14,10 +14,12 @@
 
         
         <!-- Icons -->
+        <link href="{{ asset('css/app_tabs.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/bootstrap.tabs.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/simple-line-icons.css') }}" rel="stylesheet">
         <!-- Main styles for this application -->
-        <link href="{{ asset('style.css') }}" rel="stylesheet">
 
     </head>
 
@@ -191,7 +193,7 @@
         <!-- Bootstrap and necessary plugins -->
         <script src="{{ asset('js/libs/jquery.min.js') }}"></script>
         <script src="{{ asset('js/libs/tether.min.js') }}"></script>
-        <script src="{{ asset('js/libs/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
 
         <!-- Plugins and scripts required by all views -->

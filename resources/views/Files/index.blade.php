@@ -6,48 +6,64 @@
         <div class="alert alert-success hidden" id="alertmsg">
             <p>تمت اضافة الملف بنجاح</p>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-header">
-                        <i class="fa fa-align-justify"></i> الملفات 
-                        <a class="btn btn-xs btn-success pull-left" href="#" data-toggle="modal" data-target="#myModal">اضافة ملف
-                            <i class="fa fa-plus-square"></i>
-                        </a>
+        <div class="panel with-nav-tabs panel-default">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1files" data-toggle="tab">الملفات</a></li>
+                    <li><a href="#tab2procedures" data-toggle="tab">الاجراءات</a></li>
+                    <li><a href="#tab3sittings" data-toggle="tab">الجلسات</a></li>
+
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab1files">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <i class="fa fa-align-justify"></i> الملفات 
+                                        <a class="btn btn-xs btn-success pull-left" href="#" data-toggle="modal" data-target="#myModal">اضافة ملف
+                                            <i class="fa fa-plus-square"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="card-block">
+                                        <table class="table table-bordered table-striped table-condensed" id="files">
+                                            <thead>
+                                                <tr>                                        
+                                                    <th>الملف</th>
+                                                    <th>نوع الملف</th>
+                                                    <th>الشعبة</th>
+                                                    <th>الموضوع</th>
+                                                    <th>تاريخ التسجيل</th>
+                                                    <th>#</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                            <tfoot><tr>
+                                                    <td colspan="7">عدد الملفات :<b id="count"></b></td>
+                                                </tr></tfoot>
+                                        </table>
+                                        <nav>
+                                            <!--{{ $files->links() }}-->
+                                            <ul id="pagination" class="pagination">
+
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/col-->
+                        </div>
                     </div>
-
-                    <div class="card-block">
-                        <table class="table table-bordered table-striped table-condensed" id="files">
-                            <thead>
-                                <tr>                                        
-                                    <th>الملف</th>
-                                    <th>نوع الملف</th>
-                                    <th>الشعبة</th>
-                                    <th>الموضوع</th>
-                                    <th>تاريخ التسجيل</th>
-                                    <th>#</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                               
-
-
-
-
-                            </tbody>
-                            <tfoot><tr>
-                                    <td colspan="7">عدد الملفات :<b id="count"></b></td>
-
-                                </tr></tfoot>
-                        </table>
-                        <nav>
-                            {{ $files->links() }}
-                        </nav>
-                    </div>
+                    <div class="tab-pane fade" id="tab2procedures">الاجراءات</div>
+                    <div class="tab-pane fade" id="tab3sittings">الجلسات</div>
                 </div>
             </div>
-            <!--/col-->
         </div>
+
     </div>
 </div>
 <!-- Modal -->
@@ -108,5 +124,7 @@
 </div>
 @endsection
 @section('script')
+<script src="{{ asset('js/twbsPagination.min.js') }}"></script>
 <script src="{{ asset('js/files.js') }}"></script>
+
 @stop

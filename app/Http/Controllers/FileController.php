@@ -6,7 +6,8 @@ use App\Court;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\File;
-
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Input;
 class FileController extends Controller
 {
 
@@ -20,7 +21,9 @@ class FileController extends Controller
     {
         $files = File::paginate(2);
         $courts = Court::all();
-        return view('files.index',['files' => $files,'courts' => $courts]);
+        $count = File::all()->count();
+        
+        return view('files.index',['files' => $files,'courts' => $courts,'count' => $count]);
     }
 
 
@@ -51,8 +54,9 @@ class FileController extends Controller
     public function liste()
     {
         $files = File::paginate(2);
+        $count = File::all()->count();
         
-        return response()->json(['files' => $files]);
+        return response()->json(['files' => $files,'count' => $count]);
     }
 
    
