@@ -19,12 +19,12 @@ class CreateFilesTable extends Migration
             $table->string('type')->nullable();             /*  نوع الملف*/
             $table->string('division')->nullable();         /*الشعبة    */
             $table->string('subject')->nullable();          /*  الموضوع*/
-            $table->string('elementary_num')->nullable();   /*  الرقم الابتدائي*/
+            $table->string('elementary_num')->unique()->nullable();   /*  الرقم الابتدائي*/
             $table->string('decision_judge')->nullable();   /*القاضي المقرر*/
             $table->date('registration_date')->nullable();  /*تاريخ التسجيل*/
             $table->text('verdict')->nullable();                        /*  آخر حكم/قرار*/
             $table->date('verdict_date')->nullable();
-            $table->string('appellate_num')->nullable();    /*الرقم الاستئنافي*/
+            $table->string('appellate_num')->unique()->nullable();    /*الرقم الاستئنافي*/
             $table->string('appellate_judge')->nullable();  /*القاضي المستشار*/
             $table->unsignedInteger('office_id');
             $table->unsignedInteger('court_id');

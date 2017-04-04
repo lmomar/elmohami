@@ -20,10 +20,10 @@ class FileController extends Controller
     public function index()
     {
         $files = File::paginate(2);
-        $courts = Court::all();
+        $courts = Court::all()->where('parent_id','is',null);
         $count = File::all()->count();
-        
-        return view('files.index',['files' => $files,'courts' => $courts,'count' => $count]);
+        //dd($courts);
+        return view('files.index',compact('courts'))->with(['files' => $files,'count' => $count]);
     }
 
 
@@ -33,19 +33,21 @@ class FileController extends Controller
     {
         $file = new File();
         $this->validate($request, [
-            'reference',
-            'registration_date'
+            'reference'
         ]);
         $inputs = $request->all();
         $file->reference = $inputs['reference'];
         /* relations */
-        $file->court_id = $inputs['courts'];
+        $file->court_id = $inputs['sub_courts'];
         $file->office_id = '1'; /* get office id from connected user */
         
         $file->registration_date = $inputs['registration_date'];
         $file->type = $inputs['type'];
+        $file->division = $inputs['division'];
         $file->subject = $inputs['subject'];
         $file->elementary_num =$inputs['elementary_num'];
+        $file->decision_judge =$inputs['decision_judge'];
+        //dd($file);
         $file->save();
         return response()->json();
     }

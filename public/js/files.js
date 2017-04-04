@@ -64,8 +64,8 @@ m.getFiles = function (url) {
                     //console.dir(data['files']['data'][i].id);
                     file = data['files']['data'][i];
                     $('table#files').append(
-                            '<tr><td>' + file.reference + '</td><td>' + file.type + '</td><td>' + m.isNullAndUndef(file.devision) + '</td><td>' +
-                            m.isNullAndUndef(file.subject) + '</td><td>' + m.isNullAndUndef(file.registration_date) + '<td class="action">' +
+                            '<tr><td>' + file.reference + '</td><td>' + m.isNullAndUndef(file.elementary_num) +  '</td><td>' + m.isNullAndUndef(file.type) + '</td><td>'+
+                            m.isNullAndUndef(file.decision_judge) + '</td><td>' + m.isNullAndUndef(file.registration_date) + '<td class="action">' +
                             '<a class="btn btn-sm btn-primary btn-margin-left" href="file/edit/' + file.id + '"><i class="fa fa-pencil" ></i></a>' +
                             '<a class="btn btn-sm btn-danger btn-margin-left" href="file/delete/' + file.id + '"><i class="fa fa-remove" ></i></a>' +
                             '<a class="btn btn-sm btn-info btn-margin-left" href="file/delete/' + file.id + '" title="لائحة الأطراف"><i class="fa fa-search" ></i></a>' +
@@ -85,11 +85,12 @@ m.getFiles = function (url) {
 
 m.Paginate = function () {
     $.ajax({
-        url: 'http://localhost:82/elmohami/public/files/liste',
+        url: 'http://elmohami.dev/files/liste',
         type: 'GET',
         dataType: 'json'
     })
             .done(function (data) {
+                console.dir(data);
                 total_page = data['files'].last_page;
                 current_page = data['files'].current_page;
                 $('#pagination').twbsPagination({
@@ -97,7 +98,7 @@ m.Paginate = function () {
                     visiblePages: current_page,
                     onPageClick: function (event, pageL) {
                         page = pageL;
-                        m.getFiles('http://localhost:82/elmohami/public/files/liste?page=' + page);
+                        m.getFiles('http://elmohami.dev/files/liste?page=' + page);
 
                     }
                 });
