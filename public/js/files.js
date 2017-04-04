@@ -68,7 +68,7 @@ m.getFiles = function (url) {
                             m.isNullAndUndef(file.subject) + '</td><td>' + m.isNullAndUndef(file.registration_date) + '<td class="action">' +
                             '<a class="btn btn-sm btn-primary btn-margin-left" href="file/edit/' + file.id + '"><i class="fa fa-pencil" ></i></a>' +
                             '<a class="btn btn-sm btn-danger btn-margin-left" href="file/delete/' + file.id + '"><i class="fa fa-remove" ></i></a>' +
-                            '<a class="btn btn-sm btn-info " href="file/delete/' + file.id + '"><i class="fa fa-search" ></i></a>' +
+                            '<a class="btn btn-sm btn-info btn-margin-left" href="file/delete/' + file.id + '" title="لائحة الأطراف"><i class="fa fa-search" ></i></a>' +
                             
                             '</tr>'
                             );

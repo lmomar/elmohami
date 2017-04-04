@@ -10,8 +10,9 @@
             <div class="panel-heading">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tab1files" data-toggle="tab">الملفات</a></li>
-                    <li><a href="#tab2procedures" data-toggle="tab">الاجراءات</a></li>
-                    <li><a href="#tab3sittings" data-toggle="tab">الجلسات</a></li>
+                    <li><a href="#tab2parties" data-toggle="tab">الأطراف</a></li>
+                    <li><a href="#tab3procedures" data-toggle="tab">الاجراءات</a></li>
+                    <li><a href="#tab4sittings" data-toggle="tab">الجلسات</a></li>
 
                 </ul>
             </div>
@@ -58,8 +59,9 @@
                             <!--/col-->
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="tab2procedures">الاجراءات</div>
-                    <div class="tab-pane fade" id="tab3sittings">الجلسات</div>
+                    <div class="tab-pane fade" id="tab2parties">الأطراف</div>
+                    <div class="tab-pane fade" id="tab3procedures">الاجراءات</div>
+                    <div class="tab-pane fade" id="tab4sittings">الجلسات</div>
                 </div>
             </div>
         </div>
