@@ -91,7 +91,7 @@
                                         </div>
                                         <div class="form-group overflow-hidden">
                                             <div class="col-lg-2 col-xs-6 label-color"><label>الشعبة</label></div>
-                                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="devision"></span></div>
+                                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="division"></span></div>
                                             <div class="col-lg-2 col-xs-6 label-color"><label>المستشار/القاضي المقرر</label></div>
                                             <div class="col-lg-2 col-xs-6"><span class="form-control" id="decision_judge"></span></div>
                                             <div class="col-lg-2 col-xs-6 label-color"><label>تاريخ التسجيل</label></div>
@@ -157,6 +157,15 @@ $('#courts').on('change', function (e) {
         $('#sub_courts').empty();
         $.each(data, function (index, subCatObj) {
             $('#sub_courts').append('<option value="' + subCatObj.id + '">' + subCatObj.name + '</option>');
+        });
+    });
+});
+$(document).on('change','#ecourts',function (e) {
+    var parent_id = e.target.value;
+    $.get('/files/sub_courts?parent_id=' + parent_id, function (data) {
+        $('#esub_courts').empty();
+        $.each(data, function (index, subCatObj) {
+            $('#esub_courts').append('<option value="' + subCatObj.id + '">' + subCatObj.name + '</option>');
         });
     });
 });

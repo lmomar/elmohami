@@ -78,9 +78,31 @@ class FileController extends Controller
     }
 
    
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        $this->validate($request, [
+            'reference'
+        ]);
+        $inputs= $request->all();
+        $file = File::findOrFail($inputs['file_id']);
+
+        $file->reference = $inputs['reference'];
+        /* relations */
+        $file->court_id = $inputs['sub_courts'];
+        $file->office_id = '1'; /* get office id from connected user */
         
+        $file->registration_date = $inputs['registration_date'];
+        $file->type = $inputs['type'];
+        $file->division = $inputs['division'];
+        $file->subject = $inputs['subject'];
+        $file->elementary_num =$inputs['elementary_num'];
+        $file->decision_judge =$inputs['decision_judge'];
+        $file->appellate_num =$inputs['appellate_num'];
+        $file->appellate_judge =$inputs['appellate_judge'];
+        $file->verdict =$inputs['verdict'];
+        $file->verdict_date =$inputs['verdict_date'];
+        $file->save();
+        return response()->json();
     }
 
     

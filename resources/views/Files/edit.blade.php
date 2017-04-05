@@ -7,15 +7,14 @@
                 <h4 class="modal-title" id="myModalLabel">تعديل ملف</h4>
             </div>
             <div class="modal-body">
-                {{ Form::open(['method' => 'PUT','route' => ['file.update','1','class' => 'form-horizontal','id' => 'FormEdit','role' => 'form']]) }}
-                {{ csrf_field() }}
+                {{ Form::open(['method' => 'PUT','route' => ['file.update','1'],'class' => 'form-horizontal','id' => 'FormEdit','role' => 'form']) }}
                 <input type="hidden" name="file_id" value="">
                 <div class="form-group row">
                     <div class="col-sm-2">
                         <label for="city">المحكمة</label>
                     </div>
                     <div class="col-sm-5">
-                        <select id="courts" name="courts" class="form-control">
+                        <select id="ecourts" name="courts" class="form-control">
                             <option value="0">------------</option>
                             @if($courts)
                             @foreach($courts as $court)
@@ -26,7 +25,7 @@
                     </div>
                     <div class="col-sm-5">
 
-                        <select id="sub_courts" name="sub_courts" class="form-control">
+                        <select id="esub_courts" name="sub_courts" class="form-control">
                             <option value="0">------------</option>
 
                         </select>
@@ -78,7 +77,7 @@
                     <div class="col-sm-2"><label>قرار الحكم</label></div>
                     <div class="col-sm-4"><input type="text" class="form-control" name="verdict"></div>
                     <div class="col-sm-2"><label>تاريخ قرار الحكم</label></div>
-                    <div class="col-sm-4"><input type="text" class="form-control" name="verdict_date"></div>
+                    <div class="col-sm-4"><input type="date" class="form-control" name="verdict_date"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">غلق</button>

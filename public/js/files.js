@@ -78,7 +78,6 @@ m.getFiles = function (url) {
 
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
-                console.dir(errorThrown);
                 $('table#files tbody tr').remove();/* clear rows from table */
                 $('table#files').append('<tr><td colspan="6">------</td></tr>');
             })
@@ -135,7 +134,7 @@ m.getFileInfo = function (elementHandler) {
                     $('#court_name').html(data['file'].court_id);
                     $('#elementary_num').html(data['file'].elementary_num);
                     $('#file_type').html(data['file'].type);
-                    $('#devision').html(data['file'].devision);
+                    $('#division').html(data['file'].division);
                     $('#decision_judge').html(data['file'].decision_judge);
                     $('#registration_date').html(data['file'].registration_date);
                     $('#appellate_num').html(data['file'].appellate_num);
@@ -159,6 +158,7 @@ m.bindEditFileInfo = function (id) {
                     //console.dir(data['file']);
                     //$('#court_name').html(data['file'].court_id);
                     $("input[name='file_id']").attr('value', id);
+                    $("input[name='reference']").attr('value', data['file'].reference);
                     $("input[name='lementary_num']").attr('value', data['file'].elementary_num);
                     $("input[name='type']").attr('value', data['file'].type);
                     $("input[name='division']").attr('value', data['file'].devision);
@@ -179,10 +179,40 @@ m.getIdFromClik = function(elementHandler){
     });
 }
 
+m.storeModel = function (elementhandler) {
+
+    $(elementhandler).submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            dataType: 'json'
+        })
+                .done(function (data) {
+                    $('#alertmsg').removeClass('hidden');
+                    $('#myModal').modal('hide');
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+                    m.getFiles();
+                    //setTimeout(location.reload.bind(location), 2000);
+                })
+                .fail(function (data) {
+                    $.each(data.responseJSON, function (key, value) {
+                        var input = '#FormEdit input[name=' + key + ']';
+                        $(input + '+small').text(value);
+                        $(input).parent().addClass('has-error');
+                    });
+                })
+    });
+}
+
+
 /* set function to dom */
 $(document).ready(function () {
     m.Paginate();
     m.storeModel('#FormAdd');/* form add models*/
+    m.storeModel('#FormEdit');/* form add models*/
     m.deleteModel('td.action a.btn-danger');
     m.getFileInfo("a[id*='file-']");
     m.getIdFromClik("a[id*='edit-'],a[id*='file-']")
