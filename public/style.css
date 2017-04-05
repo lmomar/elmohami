@@ -7751,3 +7751,43 @@ base-chart.chart {
 .btn-margin-left{
     margin-left: 5px !important;
 }
+.overflow-hidden{
+    overflow: hidden;
+}
+.overflow-hidden .label-color{
+    /*background-color: #f8c53c;*/
+    border: 1px solid #20a8d8;
+    height: 36px;
+    border-radius: 5px;
+    line-height: 31px;
+}
+#headingOne,#headingTwo,#headingThree,#headingFour{
+    color: #fff;
+    background-color: #263238;
+    border-color: #d3e0e9;
+}
+h5.mb-0 a{
+    color: #fff !important;
+    font-size: 0.995rem !important;
+}
+
+.btn-partie{
+    background: linear-gradient(rgb(208, 69, 27) 5%, rgb(188, 51, 21) 100%) rgb(208, 69, 27);
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+
+.btn-procedure{
+    background-color: #f8cb00;
+    color: #000;
+    border-color: rgb(220, 220, 220);
+    font-weight: bold;
+}
+a.color-blank{
+    color:#fff !important;
+    font-weight: bold;
+}
+a.color-black{
+    color:#000 !important;
+    font-weight: bold;
+}

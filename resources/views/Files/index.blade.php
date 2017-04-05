@@ -9,11 +9,7 @@
         <div class="panel with-nav-tabs panel-default">
             <div class="panel-heading">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab1files" data-toggle="tab">الملفات</a></li>
-                    <li><a href="#tab5infoFile" data-toggle="tab">بطاقة الملف</a></li>
-                    <li><a href="#tab2parties" data-toggle="tab">الأطراف</a></li>
-                    <li><a href="#tab3procedures" data-toggle="tab">الاجراءات</a></li>
-                    <li><a href="#tab4sittings" data-toggle="tab">الجلسات</a></li>
+                    <li class="active"><a href="#tab1files">الملفات</a></li>
 
                 </ul>
             </div>
@@ -59,14 +55,116 @@
                             <!--/col-->
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="tab5infoFile">بطاقة الملف</div>
-                    <div class="tab-pane fade" id="tab2parties">الأطراف</div>
-                    <div class="tab-pane fade" id="tab3procedures">الاجراءات</div>
-                    <div class="tab-pane fade" id="tab4sittings">الجلسات</div>
                 </div>
             </div>
         </div>
+        <div id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="card">
+                <div class="card-header" role="tab" id="headingOne">
+                    <h5 class="mb-0">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            بطاقة الملف
+                        </a>
+                    </h5>
+                </div>
 
+                <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="card-block">
+                        <div class="form-group overflow-hidden">
+                            <div class="col-lg-2 col-xs-6 label-color"><label>المحكمة</label></div>
+                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="court_name"></span></div>
+                            <div class="col-lg-2 col-xs-6 label-color"><label>رقم الملف بالمحكمة</label></div>
+                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="elementary_num"></span></div>
+                            <div class="col-lg-2 col-xs-6 label-color"><label>نوع الملف</label></div>
+                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="file_type"></span></div>
+                        </div>
+                        <div class="form-group overflow-hidden">
+                            <div class="col-lg-2 col-xs-6 label-color"><label>الشعبة</label></div>
+                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="devision"></span></div>
+                            <div class="col-lg-2 col-xs-6 label-color"><label>المستشار/القاضي المقرر</label></div>
+                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="decision_judge"></span></div>
+                            <div class="col-lg-2 col-xs-6 label-color"><label>تاريخ التسجيل</label></div>
+                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="registration_date"></span></div>
+                        </div>
+                        <div class="form-group overflow-hidden">
+                            <div class="col-lg-2 col-xs-6 label-color"><label>الرقم الاستئنافي</label></div>
+                            <div class="col-lg-4 col-xs-6"><span class="form-control" id="appellate_num"></span></div>
+                            <div class="col-lg-2 col-xs-6 label-color"><label>القاضي المستشار</label></div>
+                            <div class="col-lg-4 col-xs-6"><span class="form-control" id="appellate_judge"></span></div>
+                        </div>
+
+                        <div class="form-group overflow-hidden">
+                            <div class="col-lg-2 col-xs-6 label-color"><label>الموضوع</label></div>
+                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="subject"></span></div>
+                            <div class="col-lg-2 col-xs-6 label-color"><label>قرار الحكم</label></div>
+                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="verdict"></span></div>
+                            <div class="col-lg-2 col-xs-6 label-color"><label>تاريخ قرار الحكم</label></div>
+                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="verdict_date"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" role="tab" id="headingTwo">
+                    <h5 class="mb-0">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            الأطراف
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="card-block">
+                        <div class="card">
+                            <header class="card-header">
+                                <i class="fa fa-group"></i> الأطراف
+
+                                <a href="#" class="btn btn-success btn-sm pull-left">إضافة طرف  <i class="fa fa-plus-square"></i></a></header>
+                            <div class="panel-body"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" role="tab" id="headingThree">
+                    <h5 class="mb-0">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            الإجراءات
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="card-block">
+                        <div class="card">
+                            <header class="card-header">
+                                <i class="fa fa-table"></i> الإجراءات
+
+                                <a href="#" class="btn btn-success btn-sm pull-left">إضافة إجراء  <i class="fa fa-plus-square"></i></a></header>
+                            <div class="panel-body"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" role="tab" id="headingFour">
+                    <h5 class="mb-0">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            الجلسات
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
+                    <div class="card-block">
+                        <div class="card">
+                            <header class="card-header">
+                                <i class="fa fa-gear"></i> الجلسات
+
+                                <a href="#" class="btn btn-success btn-sm pull-left">إضافة جلسة  <i class="fa fa-plus-square"></i></a></header>
+                            <div class="panel-body"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!-- Modal -->
@@ -125,10 +223,10 @@
                     <div class="col-sm-4"><input type="text" class="form-control" name="elementary_num"></div>
                     <div class="col-sm-1"><label>تاريخ التسجيل</label></div>
                     <div class="col-sm-5"><input type="date" class="form-control"
-                                                  name="registration_date"
-                                                  value="{{ old('registration_date') }}"></div>
+                                                 name="registration_date"
+                                                 value="{{ old('registration_date') }}"></div>
                 </div>
-                
+
                 <div class="form-group row">
                     <div class="col-sm-2"><label>القاضي المقرر</label></div>
                     <div class="col-sm-10"><input type="text" class="form-control"

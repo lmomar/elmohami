@@ -64,11 +64,13 @@ m.getFiles = function (url) {
                     //console.dir(data['files']['data'][i].id);
                     file = data['files']['data'][i];
                     $('table#files').append(
-                            '<tr><td>' + file.reference + '</td><td>' + m.isNullAndUndef(file.elementary_num) +  '</td><td>' + m.isNullAndUndef(file.type) + '</td><td>'+
+                            '<tr><td><a data-id="' + file.id + '" id="file-' + file.id + '" class="btn btn-sm btn-primary color-blank">' + file.reference + ' </a></td><td>' + m.isNullAndUndef(file.elementary_num) +  '</td><td>' + m.isNullAndUndef(file.type) + '</td><td>'+
                             m.isNullAndUndef(file.decision_judge) + '</td><td>' + m.isNullAndUndef(file.registration_date) + '<td class="action">' +
-                            '<a class="btn btn-sm btn-primary btn-margin-left" href="file/edit/' + file.id + '"><i class="fa fa-pencil" ></i></a>' +
-                            '<a class="btn btn-sm btn-danger btn-margin-left" href="file/delete/' + file.id + '"><i class="fa fa-remove" ></i></a>' +
-                            '<a class="btn btn-sm btn-info btn-margin-left" href="file/delete/' + file.id + '" title="لائحة الأطراف"><i class="fa fa-search" ></i></a>' +
+                            '<a class="btn btn-sm btn-primary btn-margin-left color-blank" href="file/edit/' + file.id + '">تعديل <i class="fa fa-pencil" ></i></a>' +
+                            '<a class="btn btn-sm btn-danger btn-margin-left color-black" href="file/delete/' + file.id + '">حذف <i class="fa fa-remove" ></i></a>' +
+                            '<a class="btn btn-sm btn-partie btn-margin-left" href="file/delete/' + file.id + '" title="لائحة الأطراف">الأطراف <i class="fa fa-group" ></i></a>' +
+                            '<a class="btn btn-sm btn-procedure btn-margin-left" href="file/delete/' + file.id + '" title="لائحة الإجراءات">الإجراءات <i class="fa fa-table" ></i></a>' +
+                            '<a class="btn btn-sm btn-success btn-margin-left color-black" href="file/delete/' + file.id + '" title="لائحة الجلسات">الجلسات <i class="fa fa-gear" ></i></a>' +
                             
                             '</tr>'
                             );
@@ -115,12 +117,44 @@ m.isNullAndUndef = function (variable) {
     }
 }
 
+m.getFileInfo = function(elementHandler){
+    $(document).on('click',elementHandler,function(event){
+        event.preventDefault();
+        $.ajax({
+            url : 'http://elmohami.dev/files/getFileInfo/' + $(this).attr('data-id'),
+            type : 'GET',
+            dataType : 'json'
+        })
+                .done(function(data){
+                    //console.dir(data['file']);
+            $('#collapseOne').attr('aria-expanded','true');
+            $('#collapseOne').attr('style','');
+            
+            $('#collapseOne').addClass('in');
+            
+            $('#court_name').html(data['file'].court_id);
+            $('#elementary_num').html(data['file'].elementary_num);
+            $('#file_type').html(data['file'].type);
+            $('#devision').html(data['file'].devision);
+            $('#decision_judge').html(data['file'].decision_judge);
+            $('#registration_date').html(data['file'].registration_date);
+            $('#appellate_num').html(data['file'].appellate_num);
+            $('#appellate_judge').html(data['file'].appellate_judge);
+            $('#subject').html(data['file'].subject);
+            $('#verdict').html(data['file'].verdict);
+            $('#verdict_date').html(data['file'].verdict_date);
+        })
+        
+    });
+}
+
 /* set function to dom */
 $(document).ready(function () {
-    // m.getFiles('http://localhost:82/elmohami/public/files/liste');
     m.Paginate();
     m.storeModel('#FormAdd');/* form add models*/
     m.deleteModel('td.action a.btn-danger');
+    m.getFileInfo("a[id*='file-']");
+    
 
 
 

@@ -58,6 +58,8 @@ Route::group(['prefix' => 'files'], function() {
     Route::post('/store', 'FileController@store')->name('file.store');
     Route::get('/delete/{id}', 'FileController@delete')->name('file.delete')->where('id', '[0-9]+');
     Route::get('/liste', 'FileController@liste')->name('files_list_json');
+    Route::get('/getFileInfo/{id}', 'FileController@getFileInfo')->name('getFileInfo');
+    
 
     Route::get('/sub_courts', function() {
         $court_id = Input::get('parent_id');

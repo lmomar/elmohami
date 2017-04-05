@@ -61,7 +61,17 @@ class FileController extends Controller
         return response()->json(['files' => $files,'count' => $count]);
     }
 
-   
+    public function getFileInfo($id){
+        $file = File::findOrFail($id);
+        if(empty($file))
+        {
+            return response()->json(['message' => 'not found'],404);
+        }
+        return response()->json(['file' => $file]);
+        
+    }
+
+
     public function edit($id)
     {
         //
