@@ -59,6 +59,8 @@ Route::group(['prefix' => 'files'], function() {
     Route::get('/delete/{id}', 'FileController@delete')->name('file.delete')->where('id', '[0-9]+');
     Route::get('/liste', 'FileController@liste')->name('files_list_json');
     Route::get('/getFileInfo/{id}', 'FileController@getFileInfo')->name('getFileInfo');
+    Route::get('/edit/{id}', 'FileController@edit')->name('file.edit')->where('id','[0-9]+');
+    Route::put('/update/{id}', 'FileController@update')->name('file.update')->where('id','[0-9]+');
     
 
     Route::get('/sub_courts', function() {

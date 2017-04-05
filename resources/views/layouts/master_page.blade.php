@@ -121,18 +121,6 @@
         <script src="{{ asset('js/libs/jquery.min.js') }}"></script>
         <script src="{{ asset('js/libs/tether.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-
-
-        <!-- Plugins and scripts required by all views -->
-
-        <!-- CoreUI main scripts -->
-
-
-        <!-- Plugins and scripts required by this views -->
-        <!-- Custom scripts required by this view -->
-
-
-
         @yield('script')
 
     </body>
