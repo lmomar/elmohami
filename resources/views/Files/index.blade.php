@@ -58,113 +58,88 @@
                 </div>
             </div>
         </div>
-        <div id="accordion" role="tablist" aria-multiselectable="true">
-            <div class="card">
-                <div class="card-header" role="tab" id="headingOne">
-                    <h5 class="mb-0">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                            بطاقة الملف
-                        </a>
-                    </h5>
-                </div>
+        <div class="panel with-nav-tabs panel-default">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1infofile" data-toggle="tab" >بطاقة الملف</a></li>
+                    <li><a href="#tab2parties" data-toggle="tab">الأطراف</a></li>
+                    <li><a href="#tab3procedures" data-toggle="tab">الإجراءات</a></li>
+                    <li><a href="#tab4sittings" data-toggle="tab">الجلسات</a></li>
 
-                <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-                    <div class="card-block">
-                        <div class="form-group overflow-hidden">
-                            <div class="col-lg-2 col-xs-6 label-color"><label>المحكمة</label></div>
-                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="court_name"></span></div>
-                            <div class="col-lg-2 col-xs-6 label-color"><label>رقم الملف بالمحكمة</label></div>
-                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="elementary_num"></span></div>
-                            <div class="col-lg-2 col-xs-6 label-color"><label>نوع الملف</label></div>
-                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="file_type"></span></div>
-                        </div>
-                        <div class="form-group overflow-hidden">
-                            <div class="col-lg-2 col-xs-6 label-color"><label>الشعبة</label></div>
-                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="devision"></span></div>
-                            <div class="col-lg-2 col-xs-6 label-color"><label>المستشار/القاضي المقرر</label></div>
-                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="decision_judge"></span></div>
-                            <div class="col-lg-2 col-xs-6 label-color"><label>تاريخ التسجيل</label></div>
-                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="registration_date"></span></div>
-                        </div>
-                        <div class="form-group overflow-hidden">
-                            <div class="col-lg-2 col-xs-6 label-color"><label>الرقم الاستئنافي</label></div>
-                            <div class="col-lg-4 col-xs-6"><span class="form-control" id="appellate_num"></span></div>
-                            <div class="col-lg-2 col-xs-6 label-color"><label>القاضي المستشار</label></div>
-                            <div class="col-lg-4 col-xs-6"><span class="form-control" id="appellate_judge"></span></div>
-                        </div>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab1infofile">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <i class="fa fa-align-justify"></i>  
 
-                        <div class="form-group overflow-hidden">
-                            <div class="col-lg-2 col-xs-6 label-color"><label>الموضوع</label></div>
-                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="subject"></span></div>
-                            <div class="col-lg-2 col-xs-6 label-color"><label>قرار الحكم</label></div>
-                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="verdict"></span></div>
-                            <div class="col-lg-2 col-xs-6 label-color"><label>تاريخ قرار الحكم</label></div>
-                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="verdict_date"></span></div>
+                                    </div>
+
+
+                                    <div class="card-block">
+                                        <div class="form-group overflow-hidden">
+                                            <div class="col-lg-2 col-xs-6 label-color"><label>المحكمة</label></div>
+                                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="court_name"></span></div>
+                                            <div class="col-lg-2 col-xs-6 label-color"><label>رقم الملف بالمحكمة</label></div>
+                                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="elementary_num"></span></div>
+                                            <div class="col-lg-2 col-xs-6 label-color"><label>نوع الملف</label></div>
+                                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="file_type"></span></div>
+                                        </div>
+                                        <div class="form-group overflow-hidden">
+                                            <div class="col-lg-2 col-xs-6 label-color"><label>الشعبة</label></div>
+                                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="devision"></span></div>
+                                            <div class="col-lg-2 col-xs-6 label-color"><label>المستشار/القاضي المقرر</label></div>
+                                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="decision_judge"></span></div>
+                                            <div class="col-lg-2 col-xs-6 label-color"><label>تاريخ التسجيل</label></div>
+                                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="registration_date"></span></div>
+                                        </div>
+                                        <div class="form-group overflow-hidden">
+                                            <div class="col-lg-2 col-xs-6 label-color"><label>الرقم الاستئنافي</label></div>
+                                            <div class="col-lg-4 col-xs-6"><span class="form-control" id="appellate_num"></span></div>
+                                            <div class="col-lg-2 col-xs-6 label-color"><label>القاضي المستشار</label></div>
+                                            <div class="col-lg-4 col-xs-6"><span class="form-control" id="appellate_judge"></span></div>
+                                        </div>
+
+                                        <div class="form-group overflow-hidden">
+                                            <div class="col-lg-2 col-xs-6 label-color"><label>الموضوع</label></div>
+                                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="subject"></span></div>
+                                            <div class="col-lg-2 col-xs-6 label-color"><label>قرار الحكم</label></div>
+                                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="verdict"></span></div>
+                                            <div class="col-lg-2 col-xs-6 label-color"><label>تاريخ قرار الحكم</label></div>
+                                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="verdict_date"></span></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!--/col-->
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header" role="tab" id="headingTwo">
-                    <h5 class="mb-0">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            الأطراف
-                        </a>
-                    </h5>
-                </div>
-                <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-                    <div class="card-block">
-                        <div class="card">
-                            <header class="card-header">
-                                <i class="fa fa-group"></i> الأطراف
+                    <div class="tab-pane" id="tab2parties">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <i class="fa fa-align-justify"></i> 
 
-                                <a href="#" class="btn btn-success btn-sm pull-left">إضافة طرف  <i class="fa fa-plus-square"></i></a></header>
-                            <div class="panel-body"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header" role="tab" id="headingThree">
-                    <h5 class="mb-0">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            الإجراءات
-                        </a>
-                    </h5>
-                </div>
-                <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-                    <div class="card-block">
-                        <div class="card">
-                            <header class="card-header">
-                                <i class="fa fa-table"></i> الإجراءات
+                                    </div>
 
-                                <a href="#" class="btn btn-success btn-sm pull-left">إضافة إجراء  <i class="fa fa-plus-square"></i></a></header>
-                            <div class="panel-body"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header" role="tab" id="headingFour">
-                    <h5 class="mb-0">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            الجلسات
-                        </a>
-                    </h5>
-                </div>
-                <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
-                    <div class="card-block">
-                        <div class="card">
-                            <header class="card-header">
-                                <i class="fa fa-gear"></i> الجلسات
-
-                                <a href="#" class="btn btn-success btn-sm pull-left">إضافة جلسة  <i class="fa fa-plus-square"></i></a></header>
-                            <div class="panel-body"></div>
+                                    <div class="card-block">
+                                        الأطراف
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/col-->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 @include('Files.create')
