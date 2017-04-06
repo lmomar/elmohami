@@ -19,7 +19,7 @@ class FileController extends Controller
     
     public function index()
     {
-        $files = File::paginate(2);
+        $files = File::paginate(5);
         $courts = Court::all()->where('parent_id','is',null);
         $count = File::all()->count();
         //dd($courts);
@@ -55,7 +55,7 @@ class FileController extends Controller
     
     public function liste()
     {
-        $files = File::paginate(2);
+        $files = File::paginate(5);
         $count = File::all()->count();
         
         return response()->json(['files' => $files,'count' => $count]);
@@ -81,7 +81,8 @@ class FileController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'reference'
+            'reference',
+            'sub_courts'
         ]);
         $inputs= $request->all();
         $file = File::findOrFail($inputs['file_id']);

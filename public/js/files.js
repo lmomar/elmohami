@@ -1,5 +1,5 @@
-var m = {};
-var file_id=0;
+
+//var file_id = 0;
 /*
  * for modal to add object in database
  */
@@ -67,11 +67,11 @@ m.getFiles = function (url) {
                     $('table#files').append(
                             '<tr><td><a data-id="' + file.id + '" id="file-' + file.id + '" class="btn btn-sm btn-primary color-blank">' + file.reference + ' </a></td><td>' + m.isNullAndUndef(file.elementary_num) + '</td><td>' + m.isNullAndUndef(file.type) + '</td><td>' +
                             m.isNullAndUndef(file.decision_judge) + '</td><td>' + m.isNullAndUndef(file.registration_date) + '<td class="action">' +
-                            '<a data-id="' + file.id + '" id="edit-' + file.id + '" data-toggle="modal" data-target="#myModalEdit" class="btn btn-sm btn-primary btn-margin-left color-blank" href="file/edit/' + file.id + '">تعديل <i class="fa fa-pencil" ></i></a>' +
-                            '<a class="btn btn-sm btn-danger btn-margin-left color-black" href="file/delete/' + file.id + '">حذف <i class="fa fa-remove" ></i></a>' +
-                            '<a class="btn btn-sm btn-partie btn-margin-left" href="file/delete/' + file.id + '" title="لائحة الأطراف">الأطراف <i class="fa fa-group" ></i></a>' +
-                            '<a class="btn btn-sm btn-procedure btn-margin-left" href="file/delete/' + file.id + '" title="لائحة الإجراءات">الإجراءات <i class="fa fa-table" ></i></a>' +
-                            '<a class="btn btn-sm btn-success btn-margin-left color-black" href="file/delete/' + file.id + '" title="لائحة الجلسات">الجلسات <i class="fa fa-gear" ></i></a>' +
+                            '<a data-id="' + file.id + '" id="edit-' + file.id + '" data-toggle="modal" data-target="#myModalEdit" class="btn btn-sm btn-primary btn-margin-left color-blank" href="#edit-' + file.id + '">تعديل <i class="fa fa-pencil" ></i></a>' +
+                            '<a class="btn btn-sm btn-danger btn-margin-left color-black" href="files/delete/' + file.id + '">حذف <i class="fa fa-remove" ></i></a>' +
+                            '<a class="btn btn-sm btn-partie btn-margin-left" href="files/delete/' + file.id + '" title="لائحة الأطراف">الأطراف <i class="fa fa-group" ></i></a>' +
+                            '<a class="btn btn-sm btn-procedure btn-margin-left" href="files/delete/' + file.id + '" title="لائحة الإجراءات">الإجراءات <i class="fa fa-table" ></i></a>' +
+                            '<a class="btn btn-sm btn-success btn-margin-left color-black" href="files/delete/' + file.id + '" title="لائحة الجلسات">الجلسات <i class="fa fa-gear" ></i></a>' +
                             '</tr>'
                             );
                 }
@@ -91,7 +91,7 @@ m.Paginate = function () {
         dataType: 'json'
     })
             .done(function (data) {
-                console.dir(data);
+                //console.dir(data);
                 total_page = data['files'].last_page;
                 current_page = data['files'].current_page;
                 $('#pagination').twbsPagination({
@@ -142,45 +142,50 @@ m.getFileInfo = function (elementHandler) {
                     $('#subject').html(data['file'].subject);
                     $('#verdict').html(data['file'].verdict);
                     $('#verdict_date').html(data['file'].verdict_date);
+
+                    $('#card_info_file').removeClass('hidden');
+                    //console.log('hidden');
+                    //console.log('getting proc');
+                    procedure.getData(file_id);
                 })
 
     });
 }
 
 m.bindEditFileInfo = function (id) {
-    
-        $.ajax({
-            url: 'http://elmohami.dev/files/getFileInfo/' + id,
-            type: 'GET',
-            dataType: 'json'
-        })
-                .done(function (data) {
-                    //console.dir(data['file']);
-                    //$('#court_name').html(data['file'].court_id);
-                    $("input[name='file_id']").attr('value', id);
-                    $("input[name='reference']").attr('value', data['file'].reference);
-                    $("input[name='lementary_num']").attr('value', data['file'].elementary_num);
-                    $("input[name='type']").attr('value', data['file'].type);
-                    $("input[name='division']").attr('value', data['file'].devision);
-                    $("input[name='decision_judge']").attr('value', data['file'].decision_judge);
-                    $("input[name='registration_date']").attr('value', data['file'].registration_date);
-                    $("input[name='appellate_num']").attr('value', data['file'].appellate_num);
-                    $("input[name='appellate_judge']").attr('value', data['file'].appellate_judge);
-                    $("input[name='subject']").attr('value', data['file'].subject);
-                    $("input[name='verdict']").attr('value', data['file'].verdict);
-                    $("input[name='verdict_date']").attr('value', data['file'].verdict_date);
-                });
+
+    $.ajax({
+        url: 'http://elmohami.dev/files/getFileInfo/' + id,
+        type: 'GET',
+        dataType: 'json'
+    })
+            .done(function (data) {
+                //console.dir(data['file']);
+                //$('#court_name').html(data['file'].court_id);
+                $("input[name='file_id']").attr('value', id);
+                $("input[name='reference']").attr('value', data['file'].reference);
+                $("input[name='elementary_num']").attr('value', data['file'].elementary_num);
+                $("input[name='type']").attr('value', data['file'].type);
+                $("input[name='division']").attr('value', data['file'].division);
+                $("input[name='decision_judge']").attr('value', data['file'].decision_judge);
+                $("input[name='registration_date']").attr('value', data['file'].registration_date);
+                $("input[name='appellate_num']").attr('value', data['file'].appellate_num);
+                $("input[name='appellate_judge']").attr('value', data['file'].appellate_judge);
+                $("input[name='subject']").attr('value', data['file'].subject);
+                $("input[name='verdict']").attr('value', data['file'].verdict);
+                $("input[name='verdict_date']").attr('value', data['file'].verdict_date);
+            });
 }
 
-m.getIdFromClik = function(elementHandler){
-    $(document).on('click',elementHandler,function(event){
-       event.preventDefault();
-       file_id = $(this).attr('data-id');
+m.getIdFromClik = function (elementHandler) {
+    $(document).on('click', elementHandler, function (event) {
+        event.preventDefault();
+        file_id = $(this).attr('data-id');
+
     });
 }
 
-m.storeModel = function (elementhandler) {
-
+m.updateModel = function (elementhandler) {
     $(elementhandler).submit(function (event) {
         event.preventDefault();
         $.ajax({
@@ -190,11 +195,12 @@ m.storeModel = function (elementhandler) {
             dataType: 'json'
         })
                 .done(function (data) {
+                    $('#alertmsg').html('<p>تم تعديل الملف بنجاح</p>')
                     $('#alertmsg').removeClass('hidden');
-                    $('#myModal').modal('hide');
+                    $('#myModalEdit').modal('hide');
                     $('body').removeClass('modal-open');
                     $('.modal-backdrop').remove();
-                    m.getFiles();
+                    m.Paginate();
                     //setTimeout(location.reload.bind(location), 2000);
                 })
                 .fail(function (data) {
@@ -212,10 +218,10 @@ m.storeModel = function (elementhandler) {
 $(document).ready(function () {
     m.Paginate();
     m.storeModel('#FormAdd');/* form add models*/
-    m.storeModel('#FormEdit');/* form add models*/
+    m.updateModel('#FormEdit');/* form add models*/
     m.deleteModel('td.action a.btn-danger');
     m.getFileInfo("a[id*='file-']");
-    m.getIdFromClik("a[id*='edit-'],a[id*='file-']")
+    m.getIdFromClik("a[id*='edit-'],a[id*='file-']");
     $('#myModalEdit').on('shown.bs.modal', function () {
         m.bindEditFileInfo(file_id);
     })

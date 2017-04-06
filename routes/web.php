@@ -70,6 +70,11 @@ Route::group(['prefix' => 'files'], function() {
     });
 });
 
+/* Procedures */
+Route::group(['prefix' => 'procedures'],function(){
+    Route::post('/store','ProcedureController@store')->name('procedure.store');
+    Route::get('/all/{file_id}','ProcedureController@all')->name('getprocedures')->where('file_id','[0-9]+');
+});
 
 
 Route::group(['prefix' => 'users'], function() {

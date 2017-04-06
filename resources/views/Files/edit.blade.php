@@ -14,21 +14,23 @@
                         <label for="city">المحكمة</label>
                     </div>
                     <div class="col-sm-5">
-                        <select id="ecourts" name="courts" class="form-control">
-                            <option value="0">------------</option>
+                        <select id="ecourts" name="courts" class="form-control" required="">
+                            <option value="">------------</option>
                             @if($courts)
                             @foreach($courts as $court)
                             <option value="{{ $court->id }}">{{ $court->name }}</option>
                             @endforeach
                             @endif
                         </select>
+                        <small class="help-block"></small>
                     </div>
                     <div class="col-sm-5">
 
-                        <select id="esub_courts" name="sub_courts" class="form-control">
-                            <option value="0">------------</option>
+                        <select id="esub_courts" name="sub_courts" class="form-control" required="">
+                            <option value="">------------</option>
 
                         </select>
+                        <small class="help-block"></small>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -61,12 +63,12 @@
                 <div class="form-group row">
                     <div class="col-sm-2"><label>القاضي المقرر</label></div>
                     <div class="col-sm-4"><input type="text" class="form-control"
-                                                  name="decision_judge"
-                                                  value="{{ old('decision_judge') }}"></div>
+                                                 name="decision_judge"
+                                                 value="{{ old('decision_judge') }}"></div>
                     <div class="col-sm-2"><label>الرقم الاستئنافي</label></div>
                     <div class="col-sm-4"><input type="text" class="form-control"
-                                                  name="appellate_num"
-                                                  value="{{ old('appellate_num') }}"></div>
+                                                 name="appellate_num"
+                                                 value="{{ old('appellate_num') }}"></div>
                 </div>
 
                 <div class="form-group row">
@@ -75,9 +77,20 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-2"><label>قرار الحكم</label></div>
-                    <div class="col-sm-4"><input type="text" class="form-control" name="verdict"></div>
+                    <div class="col-sm-10"><input type="text" class="form-control" name="verdict"></div>
+                </div>
+                <div class="form-group row">
                     <div class="col-sm-2"><label>تاريخ قرار الحكم</label></div>
-                    <div class="col-sm-4"><input type="date" class="form-control" name="verdict_date"></div>
+                    <div class="col-sm-4">
+                        <input type="date" class="form-control" name="verdict_date">
+                    </div>
+                    <div class="col-sm-2">
+                        {{ Form::selectRange('minute', 0, 60, 0, ['class' => 'form-control']) }}
+                    </div>
+                    <div class="col-sm-2">
+                        {{ Form::selectRange('heure', 0, 24, 0, ['class' => 'form-control']) }}
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">غلق</button>

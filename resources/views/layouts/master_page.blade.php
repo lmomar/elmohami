@@ -120,7 +120,7 @@
         <!-- Bootstrap and necessary plugins -->
         <script src="{{ asset('js/libs/jquery.min.js') }}"></script>
         <script src="{{ asset('js/libs/tether.min.js') }}"></script>
-        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.js') }}"></script>
         @yield('script')
 
     </body>

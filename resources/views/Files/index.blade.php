@@ -73,7 +73,7 @@
                     <div class="tab-pane active" id="tab1infofile">
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="card">
+                                <div class="card hidden" id="card_info_file">
                                     <div class="card-header">
                                         <i class="fa fa-align-justify"></i>  
 
@@ -125,11 +125,72 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <i class="fa fa-align-justify"></i> 
-
+                                        <a class="btn btn-sm btn-success pull-left" href="#" data-toggle="modal" data-target="#modalAddPartie">اضافة طرف
+                                            <i class="fa fa-plus-square"></i>
+                                        </a>
                                     </div>
 
                                     <div class="card-block">
                                         الأطراف
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/col-->
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab3procedures">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <i class="fa fa-align-justify"></i> 
+                                        <a class="btn btn-sm btn-success pull-left" href="#" data-toggle="modal" data-target="#modalAddProc">اضافة إجراء
+                                            <i class="fa fa-plus-square"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="card-block">
+                                        <table class="table table-bordered table-striped table-condensed" id="procedures">
+                                            <thead>
+                                                <tr>                                        
+                                                    <th>تاريخ التسجيل</th>
+                                                    <th>النوع</th>
+                                                    <th>القرار</th>
+                                                    <th>الجلسة المقبلة</th>
+                                                    <th>تاريخ الإضافة</th>
+                                                    <th>#</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                            <tfoot><tr>
+                                                    <td colspan="7">عدد الإجراءات :<b id="proc-count"></b></td>
+                                                </tr></tfoot>
+                                        </table>
+                                        <nav>
+                                            <ul id="proc-pagination" class="pagination">
+
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/col-->
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab4sittings">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <i class="fa fa-align-justify"></i> 
+                                        <a class="btn btn-sm btn-success pull-left" href="#" data-toggle="modal" data-target="#modalAddSitting">اضافة جلسة
+                                            <i class="fa fa-plus-square"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="card-block">
+                                        الجلسات
                                     </div>
                                 </div>
                             </div>
@@ -144,15 +205,18 @@
 </div>
 @include('Files.create')
 @include('Files.edit')
+@include('procedures.create')
 @endsection
 @section('script')
 <script src="{{ asset('js/twbsPagination.min.js') }}"></script>
-<script src="{{ asset('js/files.js') }}"></script>
+
 
 <script>
+var file_id = 0;
+procedure = [];
+var m = {};
 $('#courts').on('change', function (e) {
     var parent_id = e.target.value;
-
     $.get('/files/sub_courts?parent_id=' + parent_id, function (data) {
         $('#sub_courts').empty();
         $.each(data, function (index, subCatObj) {
@@ -160,7 +224,7 @@ $('#courts').on('change', function (e) {
         });
     });
 });
-$(document).on('change','#ecourts',function (e) {
+$(document).on('change', '#ecourts', function (e) {
     var parent_id = e.target.value;
     $.get('/files/sub_courts?parent_id=' + parent_id, function (data) {
         $('#esub_courts').empty();
@@ -170,4 +234,6 @@ $(document).on('change','#ecourts',function (e) {
     });
 });
 </script>
+<script src="{{ asset('js/files.js') }}"></script>
+<script src="{{ asset('js/procedures.js') }}"></script>
 @stop
