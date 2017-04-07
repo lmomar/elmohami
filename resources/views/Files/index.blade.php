@@ -152,19 +152,19 @@
                                     <div class="card-block">
                                         <table class="table table-bordered table-striped table-condensed" id="procedures">
                                             <thead>
-                                                <tr>                                        
+                                                <tr>  
+                                                    <th>ID</th>
                                                     <th>تاريخ التسجيل</th>
                                                     <th>النوع</th>
                                                     <th>القرار</th>
                                                     <th>الجلسة المقبلة</th>
-                                                    <th>تاريخ الإضافة</th>
                                                     <th>#</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             </tbody>
                                             <tfoot><tr>
-                                                    <td colspan="7">عدد الإجراءات :<b id="proc-count"></b></td>
+                                                    <td colspan="7">عدد الإجراءات :<b id="proc-count">0</b></td>
                                                 </tr></tfoot>
                                         </table>
                                         <nav>
@@ -206,6 +206,7 @@
 @include('Files.create')
 @include('Files.edit')
 @include('procedures.create')
+@include('procedures.edit')
 @endsection
 @section('script')
 <script src="{{ asset('js/twbsPagination.min.js') }}"></script>

@@ -74,6 +74,8 @@ Route::group(['prefix' => 'files'], function() {
 Route::group(['prefix' => 'procedures'],function(){
     Route::post('/store','ProcedureController@store')->name('procedure.store');
     Route::get('/all/{file_id}','ProcedureController@all')->name('getprocedures')->where('file_id','[0-9]+');
+    Route::get('/get/{id}','ProcedureController@getProcedure')->name('getprocedure')->where('id','[0-9]+');
+    Route::put('/edit','ProcedureController@update')->name('procedure.update');
 });
 
 

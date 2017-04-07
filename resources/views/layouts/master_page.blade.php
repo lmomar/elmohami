@@ -121,6 +121,7 @@
         <script src="{{ asset('js/libs/jquery.min.js') }}"></script>
         <script src="{{ asset('js/libs/tether.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.js') }}"></script>
+        <script src="{{ asset('js/moment.js') }}"></script>
         @yield('script')
 
     </body>
