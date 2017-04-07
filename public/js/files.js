@@ -146,7 +146,10 @@ m.getFileInfo = function (elementHandler) {
                     $('#card_info_file').removeClass('hidden');
                     //console.log('hidden');
                     //console.log('getting proc');
-                    procedure.getData(file_id);
+                    //console.log(file_id);
+                    procedure.getData('http://elmohami.dev/procedures/all/' + file_id);
+                    
+                    procedure.Paginate(file_id);
                 })
 
     });

@@ -16,7 +16,7 @@ procedure.storeProcedure = function (elementhandler) {
                     $('#modalAddProc').modal('hide');
                     $('body').removeClass('modal-open');
                     $('.modal-backdrop').remove();
-                    procedure.getData(file_id);
+                    procedure.getData('http://elmohami.dev/procedures/all/' + file_id);
                     //setTimeout(location.reload.bind(location), 2000);
                 })
                 .fail(function (data) {
@@ -33,15 +33,15 @@ procedure.setFileId = function (elementHandler) {
     $(elementHandler).attr('value', file_id);
 }
 
-procedure.getData = function (id) {
+procedure.getData = function (url) {
     $.ajax({
-        url: 'http://elmohami.dev/procedures/all/' + id,
+        url: url,
         type: 'GET',
         dataType: 'json'
     })
             .done(function (data) {
                 $('#procedures tbody tr').remove();
-                console.dir(data['procedures']['data']);
+                //console.dir(data);
                 p = data['procedures']['data'];
                 if(p.length === 0){
                     console.log('no data');
@@ -58,16 +58,45 @@ procedure.getData = function (id) {
                             '</tr>'
                             );
                 }
-                $('#proc-count').html(p.length);
+                $('#proc-count').html(data['count']);
             })
                     .fail(function(){
                         $('#procedures tbody').append('<tr></td colspan="6">Error</td></tr>')
             })
 }
 
+procedure.Paginate = function (id) {
+    $.ajax({
+        url: 'http://elmohami.dev/procedures/all/' + id,
+        type: 'GET',
+        dataType: 'json'
+    })
+            .done(function (data) {
+                //console.dir(data);
+                total_page = data['procedures'].last_page;
+                current_page = data['procedures'].current_page;
+                /* refreshing pagination when file_id is changed */
+                if($('#proc-pagination').data("twbs-pagination")){
+                    $('#proc-pagination').twbsPagination('destroy');
+                }
+                $('#proc-pagination').twbsPagination({
+                    totalPages: total_page,
+                    visiblePages: current_page,
+                    onPageClick: function (event, pageL) {
+                        page = pageL;
+                        url='http://elmohami.dev/procedures/all/' + file_id + '/?page=' + page;
+                        console.log('pagination');
+                        console.log(url);
+                        procedure.getData(url);
+
+                    }
+                });
+            })
+}
+
 $(document).ready(function () {
     $('#modalAddProc').on('shown.bs.modal', function () {
-        console.log(file_id);
+        //console.log(file_id);
         procedure.setFileId("#proc_file_id");
     });
     procedure.storeProcedure('#FormAddProc');

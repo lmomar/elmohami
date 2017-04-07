@@ -29,8 +29,8 @@ class ProcedureController extends Controller{
     
     
     public function all($file_id){
-        $procedures = Procedure::where('file_id',$file_id)->paginate(5);
-        $count = Procedure::where('file_id',$file_id);
+        $procedures = Procedure::where('file_id',$file_id)->paginate(2);
+        $count = Procedure::where('file_id',$file_id)->count();
         return response()->json(['procedures' => $procedures,'count' => $count]);
     }
 }
