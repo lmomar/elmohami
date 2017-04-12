@@ -18,18 +18,26 @@ class ProcedureController extends Controller {
         ]);
         $data = $request->all();
         $proc = new Procedure();
-
-        $heure1 = $data['proc-1-heure'] . ':' . $data['proc-1-minute'] . ':00';
+        if($data['proc-1-heure'] !=='0'){
+            $heure1 = $data['proc-1-heure'] . ':' . $data['proc-1-minute'] . ':00';
+            $proc->proc_date = $data['proc_date'] . ' ' . $heure1;
+        }
+        $proc->proc_date = $data['proc_date'];
         //dd($heure1);
-        $proc->proc_date = $data['proc_date'] . ' ' . $heure1;
+        
 
 
         $proc->type = $data['type'];
         $proc->decision = $data['decision'];
-
-        $heure2 = $data['proc-2-heure'] . ':' . $data['proc-2-minute'] . ':00';
-        $proc->next_sitting = $data['next_sitting'] . ' ' . $heure2;
+        if($data['proc-2-heure'] !=='0')
+        {
+            $heure2 = $data['proc-2-heure'] . ':' . $data['proc-2-minute'] . ':00';
+            $proc->next_sitting = $data['next_sitting'] . ' ' . $heure2;
+        }
+        $proc->next_sitting = $data['next_sitting'];
+        
         $proc->file_id = $data['proc_file_id'];
+        //dd($proc);
         $proc->save();
         return response()->json();
     }
