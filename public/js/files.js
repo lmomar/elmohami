@@ -18,7 +18,7 @@ m.storeModel = function (elementhandler) {
                     $('#myModal').modal('hide');
                     $('body').removeClass('modal-open');
                     $('.modal-backdrop').remove();
-                    m.getFiles();
+                    m.Paginate();
                     //setTimeout(location.reload.bind(location), 2000);
                 })
                 .fail(function (data) {
