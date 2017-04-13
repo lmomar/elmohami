@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class App\ extends Migration
+class CreateFilePartyPivotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,6 +18,8 @@ class App\ extends Migration
             $table->integer('party_id')->unsigned()->index();
             $table->foreign('party_id')->references('id')->on('parties')->onDelete('cascade');
             $table->primary(['file_id', 'party_id']);
+            $table->boolean('type');
+            $table->boolean('nature');
         });
     }
 
