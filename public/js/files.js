@@ -165,18 +165,18 @@ m.bindEditFileInfo = function (id) {
             .done(function (data) {
                 //console.dir(data['file']);
                 //$('#court_name').html(data['file'].court_id);
-                $("input[name='file_id']").attr('value', id);
-                $("input[name='reference']").attr('value', data['file'].reference);
-                $("input[name='elementary_num']").attr('value', data['file'].elementary_num);
-                $("input[name='type']").attr('value', data['file'].type);
-                $("input[name='division']").attr('value', data['file'].division);
-                $("input[name='decision_judge']").attr('value', data['file'].decision_judge);
-                $("input[name='registration_date']").attr('value', data['file'].registration_date);
-                $("input[name='appellate_num']").attr('value', data['file'].appellate_num);
-                $("input[name='appellate_judge']").attr('value', data['file'].appellate_judge);
-                $("input[name='subject']").attr('value', data['file'].subject);
-                $("input[name='verdict']").attr('value', data['file'].verdict);
-                $("input[name='verdict_date']").attr('value', data['file'].verdict_date);
+                $("#FormEdit input[name='file_id']").attr('value', id);
+                $("#FormEdit input[name='reference']").attr('value', data['file'].reference);
+                $("#FormEdit input[name='elementary_num']").attr('value', data['file'].elementary_num);
+                $("#FormEdit input[name='type']").attr('value', data['file'].type);
+                $("#FormEdit input[name='division']").attr('value', data['file'].division);
+                $("#FormEdit input[name='decision_judge']").attr('value', data['file'].decision_judge);
+                $("#FormEdit input[name='registration_date']").attr('value', data['file'].registration_date);
+                $("#FormEdit input[name='appellate_num']").attr('value', data['file'].appellate_num);
+                $("#FormEdit input[name='appellate_judge']").attr('value', data['file'].appellate_judge);
+                $("#FormEdit input[name='subject']").attr('value', data['file'].subject);
+                $("#FormEdit input[name='verdict']").attr('value', data['file'].verdict);
+                $("#FormEdit input[name='verdict_date']").attr('value', data['file'].verdict_date);
             });
 }
 
@@ -227,7 +227,10 @@ $(document).ready(function () {
     m.getIdFromClik("a[id*='edit-'],a[id*='file-']");
     $('#myModalEdit').on('shown.bs.modal', function () {
         m.bindEditFileInfo(file_id);
-    })
+    });
+    $('#myModal').on('shown.bs.modal', function () {
+        $(this).find('form').trigger('reset');
+    });
 
 
 

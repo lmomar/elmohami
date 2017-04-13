@@ -50,7 +50,7 @@ procedure.getData = function (url) {
                 for (i = 0; i < p.length; i++) {
                     $('#procedures tbody').append(
                             '<tr>' +
-                            '<td>' + p[i].id + '</td>'+
+                            '<td>' + p[i].id + '</td>' +
                             '<td>' + p[i].proc_date + '</td><td>' + m.isNullAndUndef(p[i].type) + '</td><td>' + m.isNullAndUndef(p[i].decision) + '</td><td>' + m.isNullAndUndef(p[i].next_sitting) + '</td>' +
                             '<td class="action">' +
                             '<a data-id="' + p[i].id + '" id="proc-' + p[i].id + '" class="btn btn-sm btn-primary btn-margin-left color-blank" data-toggle="modal" data-target="#modalEditProc"> تعديل <i class="fa fa-pencil"></i></a>' +
@@ -73,25 +73,38 @@ procedure.Paginate = function (id) {
         dataType: 'json'
     })
             .done(function (data) {
-                //console.dir(data);
-                total_page = data['procedures'].last_page;
-                current_page = data['procedures'].current_page;
-                /* refreshing pagination when file_id is changed */
-                if ($('#proc-pagination').data("twbs-pagination")) {
-                    $('#proc-pagination').twbsPagination('destroy');
-                }
-                $('#proc-pagination').twbsPagination({
-                    totalPages: total_page,
-                    visiblePages: current_page,
-                    onPageClick: function (event, pageL) {
-                        page = pageL;
-                        url = 'http://elmohami.dev/procedures/all/' + file_id + '/?page=' + page;
-                        console.log('pagination');
-                        console.log(url);
-                        procedure.getData(url);
-
+                console.log('data:');
+                console.dir(data);
+                if (data.count !== 0)
+                {
+                    /* refreshing pagination when file_id is changed */
+                    console.log('!==0')
+                    if ($('#proc-pagination').data("twbs-pagination")) {
+                        $('#proc-pagination').twbsPagination('destroy');
                     }
-                });
+
+                    total_page = data['procedures'].last_page;
+                    current_page = data['procedures'].current_page;
+                    $('#proc-pagination').twbsPagination({
+                        totalPages: total_page,
+                        visiblePages: current_page,
+                        onPageClick: function (event, pageL) {
+                            page = pageL;
+                            url = 'http://elmohami.dev/procedures/all/' + file_id + '/?page=' + page;
+                            /*console.log('pagination');
+                             console.log(url);*/
+                            procedure.getData(url);
+
+                        }
+                    });
+                } else {
+                    console.log('00000');
+                }
+
+
+
+
+
             })
 }
 
