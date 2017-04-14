@@ -148,8 +148,9 @@ m.getFileInfo = function (elementHandler) {
                     //console.log('getting proc');
                     //console.log(file_id);
                     procedure.getData('http://elmohami.dev/procedures/all/' + file_id);
-                    
                     procedure.Paginate(file_id);
+                    
+                    partie.getData('http://elmohami.dev/parties/all/' + file_id);
                 })
 
     });

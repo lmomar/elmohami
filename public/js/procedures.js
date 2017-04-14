@@ -44,7 +44,7 @@ procedure.getData = function (url) {
                 //console.dir(data);
                 p = data['procedures']['data'];
                 if (p.length === 0) {
-                    console.log('no data');
+                    //console.log('no data');
                     $('#procedures tbody').append('<tr><td colspan="6" class="text-center">----------</td></tr>');
                 }
                 for (i = 0; i < p.length; i++) {
@@ -73,8 +73,8 @@ procedure.Paginate = function (id) {
         dataType: 'json'
     })
             .done(function (data) {
-                console.log('data:');
-                console.dir(data);
+                //console.log('data:');
+               // console.dir(data);
                 if (data.count !== 0)
                 {
                     /* refreshing pagination when file_id is changed */
@@ -98,7 +98,7 @@ procedure.Paginate = function (id) {
                         }
                     });
                 } else {
-                    console.log('00000');
+                    //console.log('00000');
                 }
 
 

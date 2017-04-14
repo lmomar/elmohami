@@ -78,6 +78,13 @@ Route::group(['prefix' => 'procedures'],function(){
     Route::put('/edit','ProcedureController@update')->name('procedure.update');
 });
 
+/* Parties */
+Route::group(['prefix' => 'parties'],function(){
+    Route::post('/store','PartieController@store')->name('partie.store');
+    Route::get('/all/{file_id}','PartieController@all')->name('partie.all')->where('file_id','[0-9]+');
+    Route::put('/update','PartieController@update')->name('partie.update');
+    Route::get('/info/{id}','PartieController@getPartieInfo')->name('partie.info')->where('id','[0-9]+');
+});
 
 Route::group(['prefix' => 'users'], function() {
     Route::get('/', 'UserController@index')->name('users');
