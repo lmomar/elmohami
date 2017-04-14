@@ -80,7 +80,7 @@ partie.bindEditForm = function (elementhandler) {
                     $('#FormEditPartie input[name="part_phone"]').attr('value',data['partie'].part_phone);
                 })
                 .fail(function (data) {
-
+                    console.dir(data);
                 })
     });
 

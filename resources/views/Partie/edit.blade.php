@@ -10,6 +10,7 @@
                 {!! Form::open(['route' => 'partie.update','method' => 'post','class' => 'form-horizontal','id' => 'FormEditPartie','role' => 'form']) !!}
                 {{ csrf_field() }}
                 <input type="hidden" name="e_partie_file_id" value="" id="e_partie_file_id">
+                <input type="hidden" name="partie_id" value="" id="partie_id">
 
                 <div class="form-group row">
                     <div class="col-sm-3"><label>الاسم الكامل </label></div>

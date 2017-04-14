@@ -39,5 +39,22 @@ class PartieController extends Controller {
         }
         return response()->json(['partie' => $partie]);
     }
+    
+    
+    public function update(Request $request) {
+        $this->validate($request, [
+            'full_name',
+            'e_partie_file_id',/* en cas ou l'input file_id est vide(erreur js ?!! )*/
+            'partie_id',/* from input */
+        ]);
+        $data = $request->all();
+        $partie = Partie::find($data['partie_id']);
+        $partie->full_name = $data['full_name'];
+        $partie->part_phone = $data['part_phone'];
+        
+        
+        $partie->save();
+        return response()->json();
+    }
 
 }
