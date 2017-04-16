@@ -3,6 +3,8 @@
 /*
  * for modal to add object in database
  */
+var parent_court_id = 0;
+var sub_court_id = 0;
 m.storeModel = function (elementhandler) {
 
     $(elementhandler).submit(function (event) {
@@ -68,11 +70,7 @@ m.getFiles = function (url) {
                             '<tr><td><a data-id="' + file.id + '" id="file-' + file.id + '" class="btn btn-sm btn-primary color-blank">' + file.reference + ' </a></td><td>' + m.isNullAndUndef(file.elementary_num) + '</td><td>' + m.isNullAndUndef(file.type) + '</td><td>' +
                             m.isNullAndUndef(file.decision_judge) + '</td><td>' + m.isNullAndUndef(file.registration_date) + '<td class="action">' +
                             '<a data-id="' + file.id + '" id="edit-' + file.id + '" data-toggle="modal" data-target="#myModalEdit" class="btn btn-sm btn-primary btn-margin-left color-blank" href="#edit-' + file.id + '">تعديل <i class="fa fa-pencil" ></i></a>' +
-                            '<a class="btn btn-sm btn-danger btn-margin-left color-black" href="files/delete/' + file.id + '">حذف <i class="fa fa-remove" ></i></a>' +
-                            '<a class="btn btn-sm btn-partie btn-margin-left" href="files/delete/' + file.id + '" title="لائحة الأطراف">الأطراف <i class="fa fa-group" ></i></a>' +
-                            '<a class="btn btn-sm btn-procedure btn-margin-left" href="files/delete/' + file.id + '" title="لائحة الإجراءات">الإجراءات <i class="fa fa-table" ></i></a>' +
-                            '<a class="btn btn-sm btn-success btn-margin-left color-black" href="files/delete/' + file.id + '" title="لائحة الجلسات">الجلسات <i class="fa fa-gear" ></i></a>' +
-                            '</tr>'
+                            '</td></tr>'
                             );
                 }
 
@@ -149,7 +147,7 @@ m.getFileInfo = function (elementHandler) {
                     //console.log(file_id);
                     procedure.getData('http://elmohami.dev/procedures/all/' + file_id);
                     procedure.Paginate(file_id);
-                    
+
                     partie.getData('http://elmohami.dev/parties/all/' + file_id);
                 })
 
@@ -164,7 +162,7 @@ m.bindEditFileInfo = function (id) {
         dataType: 'json'
     })
             .done(function (data) {
-                //console.dir(data['file']);
+                console.dir(data['file']);
                 //$('#court_name').html(data['file'].court_id);
                 $("#FormEdit input[name='file_id']").attr('value', id);
                 $("#FormEdit input[name='reference']").attr('value', data['file'].reference);
@@ -178,6 +176,8 @@ m.bindEditFileInfo = function (id) {
                 $("#FormEdit input[name='subject']").attr('value', data['file'].subject);
                 $("#FormEdit input[name='verdict']").attr('value', data['file'].verdict);
                 $("#FormEdit input[name='verdict_date']").attr('value', data['file'].verdict_date);
+                sub_court_id = data['file'].court_id;
+                m.selectedParentCourt(sub_court_id);
             });
 }
 
@@ -185,6 +185,8 @@ m.getIdFromClik = function (elementHandler) {
     $(document).on('click', elementHandler, function (event) {
         event.preventDefault();
         file_id = $(this).attr('data-id');
+        $('#files tbody tr').removeClass('selectedRow');
+        $(this).closest('tr').addClass('selectedRow');
 
     });
 }
@@ -215,6 +217,58 @@ m.updateModel = function (elementhandler) {
                     });
                 })
     });
+}
+
+/*  select parent and sub court in edit file */
+
+m.selectedParentCourt = function (sub_id) {
+    $.ajax({
+        url: 'http://elmohami.dev/courts/parent/' + sub_id,
+        type: 'GET',
+        dataType: 'json'
+    })
+            .done(function (data) {
+                console.dir(data);
+                parent_court_id = data['parent_id'];
+
+
+                //console.log($('#ecourts option[value="' + data['parent_id'] + '"]').attr('value'));
+                /* selecting parent_court */
+                $('#ecourts option').removeClass('selectedOption');
+                $('#ecourts option[value="' + data['parent_id'] + '"]').attr('selected', 'selected');
+                $('#ecourts option[value="' + data['parent_id'] + '"]').addClass('selectedOption');
+
+                m.selectedSubCourt(parent_court_id);
+
+
+
+            })
+            .fail(function (error) {
+                console.dir(error);
+            });
+}
+/* in edit */
+m.selectedSubCourt = function (parent_id) {
+    $.ajax({
+        url: 'http://elmohami.dev/courts/get/' + parent_id,
+        type: 'get',
+        dataType: 'json'
+    })
+            .done(function (data) {
+                /* selecting sub court*/
+        console.log('sub:');
+        console.dir(data['courts'].length);
+        sub = data['courts'];
+                $('#esub_courts option').remove();
+                for (i = 0; i < sub.length; i++) {
+                    $('#esub_courts').append(
+                            '<option value="' + sub[i].id + '">' + sub[i].name + '</option>'
+                            );
+                }
+                //$('#esub_courts option').removeClass('selectedOption');
+                $('#esub_courts option[value="' + sub_court_id + '"]').attr('selected', 'selected');
+                $('#esub_courts option[value="' + sub_court_id + '"]').addClass('selectedOption');
+            })
 }
 
 
