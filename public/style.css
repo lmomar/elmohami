@@ -3169,13 +3169,13 @@ input[type="button"].btn-block {
 .page-link, .pagination-datatables li a, .pagination li a,.pagination li span {
     position: relative;
     float: right;
-    padding: 8px 12px;
-    padding: 0.5rem 0.75rem;
+    /*padding: 8px 12px;*/
+    /*padding: 0.5rem 0.75rem*/
     margin-right: -1px;
     color: #20a8d8;
     text-decoration: none;
     background-color: #fff;
-    border: 1px solid #ddd; }
+    /*border: 1px solid #ddd; }*/
 .pagination li.active span {
     position: relative;
     float: right;
@@ -3317,18 +3317,6 @@ a.tag:focus, a.tag:hover {
     border-top-color: #e4b9b9; }
 .alert-danger .alert-link {
     color: #843534; }
-
-@-webkit-keyframes progress-bar-stripes {
-    from {
-        background-position: 1rem 0; }
-    to {
-        background-position: 100% 0; } }
-
-@keyframes progress-bar-stripes {
-    from {
-        background-position: 1rem 0; }
-    to {
-        background-position: 100% 0; } }
 .progress {
     display: block;
     width: 100%;
@@ -3360,10 +3348,6 @@ a.tag:focus, a.tag:hover {
 base::-moz-progress-bar,
 .progress[value] {
     background-color: #eee; }
-
-@media screen and (min-width: 0\0) {
-    .progress {
-        background-color: #eee; }
 
     .progress-bar {
         display: inline-block;

@@ -54,6 +54,7 @@ Route::group(['prefix' => 'courts'], function() {
 /* files */
 
 Route::group(['prefix' => 'files'], function() {
+    Route::get('/manage-vue','FileController@manageVue');
     Route::get('/', 'FileController@index')->name('files');
     Route::post('/store', 'FileController@store')->name('file.store');
     Route::get('/delete/{id}', 'FileController@delete')->name('file.delete')->where('id', '[0-9]+');

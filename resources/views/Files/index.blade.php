@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-    <div class="animated fadeIn">
+    <div class="" id="manage-vue">
         <div class="alert alert-success hidden" id="alertmsg">
             <p>تمت اضافة الملف بنجاح</p>
         </div>
@@ -21,7 +21,7 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <i class="fa fa-align-justify"></i> الملفات 
-                                        <a class="btn btn-xs btn-success pull-left" href="#" data-toggle="modal" data-target="#myModal">اضافة ملف
+                                        <a class="btn btn-xs btn-success pull-left" href="#" data-toggle="modal" data-target="#modalAddFile">اضافة ملف
                                             <i class="fa fa-plus-square"></i>
                                         </a>
                                     </div>
@@ -30,6 +30,7 @@
                                         <table class="table table-bordered table-striped table-condensed" id="files">
                                             <thead>
                                                 <tr>                                        
+                                                    <th>الرقم</th>
                                                     <th>الرقم المرجعي</th>
                                                     <th>الرقم بالمحكمة</th>
                                                     <th>نوع الملف</th>
@@ -39,14 +40,42 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <tr v-for="item in items">
+                                                    <td>@{{ item.id }}</td>
+                                                    <td>@{{ item.reference }}</td>
+                                                    <td>@{{ item.elementary_num }}</td>
+                                                    <td>@{{ item.type }}</td>
+                                                    <td>@{{ item.decision_judge }}</td>
+                                                    <td>@{{ item.registration_date }}</td>
+                                                    <td>	
+                                                        <button class="btn btn-primary" @click.prevent="editItem(item)">تعديل</button>
+                                                        <button class="btn btn-danger" @click.prevent="deleteItem(item)">حذف</button>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                             <tfoot><tr>
                                                     <td colspan="7">عدد الملفات :<b id="count"></b></td>
                                                 </tr></tfoot>
                                         </table>
                                         <nav>
-                                            <ul id="pagination" class="pagination">
-
+                                            <ul class="pagination">
+                                                <li v-if="pagination.current_page > 1">
+                                                    <a href="#" aria-label="Previous"
+                                                       @click.prevent="changePage(pagination.current_page - 1)">
+                                                        <span aria-hidden="true">«</span>
+                                                    </a>
+                                                </li>
+                                                <li v-for="page in pagesNumber"
+                                                    v-bind:class="[ page == isActived ? 'active' : '']">
+                                                    <a href="#"
+                                                       @click.prevent="changePage(page)">@{{ page }}</a>
+                                                </li>
+                                                <li v-if="pagination.current_page < pagination.last_page">
+                                                    <a href="#" aria-label="Next"
+                                                       @click.prevent="changePage(pagination.current_page + 1)">
+                                                        <span aria-hidden="true">»</span>
+                                                    </a>
+                                                </li>
                                             </ul>
                                         </nav>
                                     </div>
@@ -218,34 +247,25 @@
                             <!--/col-->
                         </div>
                     </div>
+                    @include('Files.create')
                 </div>
             </div>
         </div>
 
     </div>
 </div>
-@include('Files.create')
-@include('Files.edit')
-@include('procedures.create')
-@include('procedures.edit')
-@include('Partie.create')
-@include('Partie.edit')
+
+
+
 @endsection
 @section('script')
-<script src="{{ asset('js/twbsPagination.min.js') }}"></script>
-
-
 <script>
-var file_id = 0;
-procedure = [];
-partie = [];
-var m = {};
 $('#courts').on('change', function (e) {
     var parent_id = e.target.value;
     $.get('/files/sub_courts?parent_id=' + parent_id, function (data) {
-        $('#sub_courts').empty();
+        $('#court_id').empty();
         $.each(data, function (index, subCatObj) {
-            $('#sub_courts').append('<option value="' + subCatObj.id + '">' + subCatObj.name + '</option>');
+            $('#court_id').append('<option value="' + subCatObj.id + '">' + subCatObj.name + '</option>');
         });
     });
 });
@@ -259,10 +279,15 @@ $(document).on('change', '#ecourts', function (e) {
     });
 });
 </script>
-<script src="{{ asset('js/files.js') }}"></script>
-<script src="{{ asset('js/procedures.js') }}"></script>
-<script src="{{ asset('js/parties.js') }}"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+<script type="text/javascript" src="{{ asset('js/vue-files.js')}}"></script>
+
+
+    
+
 <script src="{{ asset('js/bootstrap-clockpicker.min.js') }}"></script>
+
 <script type="text/javascript">
 $('.clockpicker').clockpicker();
 </script>

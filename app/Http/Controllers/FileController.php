@@ -14,25 +14,45 @@ class FileController extends Controller {
     public function __construct() {
         //$this->middleware('auth');
     }
+    
+    public function manageVue() {
+        $courts = Court::all()->where('parent_id', 'is', null);
+        return view('Files.index', compact('courts'));
+    }
 
-    public function index() {
-        $files = File::paginate(5);
+    public function index(Request $request) {
+        $files = File::paginate(6);
         $courts = Court::all()->where('parent_id', 'is', null);
         $count = File::all()->count();
+        
+        $response = [
+            'pagination' => [
+                'total' => $files->total(),
+                'per_page' => $files->perPage(),
+                'current_page' => $files->currentPage(),
+                'last_page' => $files->lastPage(),
+                'from' => $files->firstItem(),
+                'to' => $files->lastItem()
+            ],
+            'data' => $files
+        ];
+        return response()->json($response);
         //dd($courts);
-        return view('files.index', compact('courts'))->with(['files' => $files, 'count' => $count]);
+        //return view('files.index', compact('courts'))->with(['files' => $files, 'count' => $count]);
     }
 
     public function store(Request $request) {
-        $file = new File();
+        //$file = new File();
         $this->validate($request, [
             'reference'
         ]);
-        $inputs = $request->all();
+        $create = File::create($request->all());
+        
+        /* $inputs = $request->all();
         $file->reference = $inputs['reference'];
-        /* relations */
+        
         $file->court_id = $inputs['sub_courts'];
-        $file->office_id = '1'; /* get office id from connected user */
+        $file->office_id = '1'; 
 
         $file->registration_date = $inputs['registration_date'];
         $file->type = $inputs['type'];
@@ -41,8 +61,8 @@ class FileController extends Controller {
         $file->elementary_num = $inputs['elementary_num'];
         $file->decision_judge = $inputs['decision_judge'];
         //dd($file);
-        $file->save();
-        return response()->json();
+        $file->save();*/
+        return response()->json($create);
     }
 
     public function liste() {
