@@ -98,7 +98,7 @@
                             <div class="modal-body">
 {{--                                {{ Form::open(['method' => 'PUT','route' => ['sittings.update','1'], 'v-on:submit.prevent' => 'updateItem(fillItem.id)','class' => 'form-horizontal','id' => 'FormEdit','role' => 'form']) }}--}}
 
-                                <form method="put" enctype="multipart/form-data"
+                                <form method="post" enctype="multipart/form-data"
                                       v-on:submit.prevent="updateItem(fillItem.id)">
 
 
