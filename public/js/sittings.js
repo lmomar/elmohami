@@ -97,6 +97,3 @@ updateItem: function(id){
 }
 
 });
-/**
- * Created by Anormal on 14/04/2017.
- */
