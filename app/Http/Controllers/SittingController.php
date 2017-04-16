@@ -4,68 +4,58 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sitting;
-use App\File;
-use Illuminate\Support\Facades\DB;
+use Response;
+use App\Http\Requests;
+use Validator;
+
 
 class SittingController extends Controller {
 
-    public function create() {
-        $files = File::select('id', 'reference')->get();
-        return view('sittings.create')->with('files', $files);
+    public function manageVue()
+    {
+        return view('sittings.index');
     }
+
+    public function index()
+    {
+        $items = Sitting::latest()->paginate(5);
+
+        $response = [
+            'pagination' => [
+                'total' => $items->total(),
+                'per_page' => $items->perPage(),
+                'current_page' => $items->currentPage(),
+                'last_page' => $items->lastPage(),
+                'from' => $items->firstItem(),
+                'to' => $items->lastItem()
+            ],
+            'data' => $items
+        ];
+        return response()->json($response);
+    }
+
 
     public function store(Request $request) {
         $this->validate($request, [
             'sitting_date',
         ]);
-        $inputs = $request->all();
-        $sitting = new Sitting();
-        $sitting->sitting_date = $inputs['sitting_date'];
-        $sitting->devision = $inputs['devision'];
-        $sitting->nature = $inputs['nature'];
-        $sitting->file_id = $inputs['file_id'];
-        $sitting->save();
-        //dd($sitting);
-        return response()->json();
-    }
 
-    public function edit($id) {
-        $sitting = Sitting::findOrFail($id);
-        $files = File::select('id', 'reference')->get();
-        return view('sittings.edit', ['sitting' => $sitting])->with('files', $files);
+        Sitting::create($request->all());
+        return redirect()->route('sittings');
     }
 
     public function update(Request $request, $id) {
-        $this->validate($request, [
-            'sitting_date',
-        ]);
-        $inputs = $request->all();
-        $sitting = Sitting::findOrFail($id);
-        $sitting->sitting_date = $inputs['sitting_date'];
-        $sitting->devision = $inputs['devision'];
-        $sitting->nature = $inputs['nature'];
-        $sitting->file_id = $inputs['file_id'];
-        $sitting->save();
-        return redirect()->route('sittings')->with('success', 'Sitting updated');
+//        $this->validate($request, [
+//            'sitting_date' => 'required',
+//            'file_id' => 'required',
+//        ]);
+//        $edit = Sitting::find($id)->update($request->all());
+//        return response()->json($edit);
     }
 
-    public function delete($id) {
-        $sitting = Sitting::findOrFail($id);
-
-        if (empty($sitting)) {
-            return redirect()->route('sittings')->with('error', 'Sitting not found');
-        }
-        Sitting::destroy($id);
-        return response()->json();
-        //return redirect()->route('sittings')->with('success','Sitting deleted');
+    public function destroy($id)
+    {
+        Sitting::find($id)->delete();
+        return response()->json(['done']);
     }
-
-    public function index() {
-        $files = File::select('id', 'reference')->get();
-        $sittings = DB::table('sittings')->join('files','files.id','sittings.file_id')->select('sittings.*','files.reference')->get();
-        return view('sittings.index', ['sittings' => $sittings])->with('files', $files);
-    }
-    
-    
-
 }

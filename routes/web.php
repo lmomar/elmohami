@@ -32,15 +32,15 @@ Route::get('office/password/reset/{token}', 'Office\ResetPasswordController@show
 Route::get('office/register', 'Office\RegisterController@showRegistrationForm')->name('office.register');
 Route::post('office/register', 'Office\RegisterController@register');
 
-/* add sittings */
-Route::group(['prefix' => 'sittings'], function() {
-    Route::get('/create', 'SittingController@create')->name('sitting.create');
-    Route::post('/store', 'SittingController@store')->name('sitting.store');
-    Route::get('/', 'SittingController@index')->name('sittings');
-    Route::get('/edit/{id}', 'SittingController@edit')->name('show_edit_sitting')->where('id', '[0-9]+');
-    Route::put('/update/{id}', 'SittingController@update')->name('update_sitting')->where('id', '[0-9]+');
-    Route::get('/delete/{id}', 'SittingController@delete')->name('delete_sitting')->where('id', '[0-9]+');
-});
+///* add sittings */
+//Route::group(['prefix' => 'sittings'], function() {
+//    Route::get('/create', 'SittingController@create')->name('sitting.create');
+//    Route::post('/store', 'SittingController@store')->name('sitting.store');
+//    Route::get('/', 'SittingController@index')->name('sittings');
+//    Route::get('/edit/{id}', 'SittingController@edit')->name('show_edit_sitting')->where('id', '[0-9]+');
+//    Route::put('/update/{id}', 'SittingController@update')->name('update_sitting')->where('id', '[0-9]+');
+//    Route::get('/delete/{id}', 'SittingController@delete')->name('delete_sitting')->where('id', '[0-9]+');
+//});
 
 /* courts */
 Route::group(['prefix' => 'courts'], function() {
@@ -61,7 +61,7 @@ Route::group(['prefix' => 'files'], function() {
     Route::get('/getFileInfo/{id}', 'FileController@getFileInfo')->name('getFileInfo');
     Route::get('/edit/{id}', 'FileController@edit')->name('file.edit')->where('id','[0-9]+');
     Route::put('/update/{id}', 'FileController@update')->name('file.update')->where('id','[0-9]+');
-    
+
 
     Route::get('/sub_courts', function() {
         $court_id = Input::get('parent_id');
@@ -75,7 +75,7 @@ Route::group(['prefix' => 'procedures'],function(){
     Route::post('/store','ProcedureController@store')->name('procedure.store');
     Route::get('/all/{file_id}','ProcedureController@all')->name('getprocedures')->where('file_id','[0-9]+');
     Route::get('/get/{id}','ProcedureController@getProcedure')->name('getprocedure')->where('id','[0-9]+');
-    Route::put('/edit','ProcedureController@update')->name('procedure.update');
+    Route::put('/update','ProcedureController@update')->name('procedure.update');
 });
 
 
@@ -93,3 +93,16 @@ Route::get('/sub_courts', function() {
 //Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('sittings-list', 'SittingController@manageVue')->name('sittings');
+Route::group(['prefix' => 'sittings'], function () {
+    Route::get('/', 'SittingController@index')->name('sittings.index');
+    Route::post('/store', 'SittingController@store')->name('sittings.store');
+    Route::put('/update/{id}', 'SittingController@update')->name('sittings.update');
+    Route::delete('/delete/{id}', 'SittingController@destroy')->name('sittings.delete')->where('id', '[0-9]+');
+});
+//Route::group(['middleware'=>['web']], function(){
+//
+//    Route::resource('sittings','SittingController');
+//});
+//Route::put('/edit','SittingController@update')->name('sittings.update');
