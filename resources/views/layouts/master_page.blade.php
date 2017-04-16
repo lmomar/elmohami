@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <meta name="keyword" content="">
-        <meta name="csrf-token" content="{{ csrf_token() }}" />
+        <meta name="token" id="token" value="{{ csrf_token() }}" />
         <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
         <title>Law office management</title>
 

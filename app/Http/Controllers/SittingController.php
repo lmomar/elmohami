@@ -45,12 +45,12 @@ class SittingController extends Controller {
     }
 
     public function update(Request $request, $id) {
-//        $this->validate($request, [
-//            'sitting_date' => 'required',
-//            'file_id' => 'required',
-//        ]);
-//        $edit = Sitting::find($id)->update($request->all());
-//        return response()->json($edit);
+        $this->validate($request, [
+            'sitting_date' => 'required',
+            'file_id' => 'required',
+        ]);
+        $edit = Sitting::find($id)->update($request->all());
+        return response()->json($edit);
     }
 
     public function destroy($id)
