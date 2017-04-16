@@ -21,7 +21,10 @@ class File extends Model
     }
     
     public function parties() {
-        return $this->belongsToMany('App\Partie', 'file_partie')->using('App\FilePartie');
+       /*return $this->belongsToMany('App\Partie', 'file_partie')->using('App\FilePartie')
+                ->withPivot('type','nature');*/
+        return $this->belongsToMany(Partie::class,'file_partie','file_id','partie_id')->withPivot('type','nature');
+                
     }
     
 }

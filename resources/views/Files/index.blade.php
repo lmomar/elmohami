@@ -131,7 +131,28 @@
                                     </div>
 
                                     <div class="card-block">
-                                        الأطراف
+                                        <table class="table table-bordered table-striped table-condensed" id="parties">
+                                            <thead>
+                                                <tr>  
+                                                    <th>ID</th>
+                                                    <th>الصفة</th>
+                                                    <th>الاسم الكامل</th>
+                                                    <th>الهاتف</th>
+                                                    <th>أضيف يوم</th>
+                                                    <th>#</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                            <tfoot><tr>
+                                                    <td colspan="7">عدد الأطراف :<b id="parties-count">0</b></td>
+                                                </tr></tfoot>
+                                        </table>
+                                        <nav>
+                                            <ul id="parties-pagination" class="pagination">
+
+                                            </ul>
+                                        </nav>
                                     </div>
                                 </div>
                             </div>
@@ -207,6 +228,8 @@
 @include('Files.edit')
 @include('procedures.create')
 @include('procedures.edit')
+@include('Partie.create')
+@include('Partie.edit')
 @endsection
 @section('script')
 <script src="{{ asset('js/twbsPagination.min.js') }}"></script>
@@ -215,6 +238,7 @@
 <script>
 var file_id = 0;
 procedure = [];
+partie = [];
 var m = {};
 $('#courts').on('change', function (e) {
     var parent_id = e.target.value;
@@ -237,4 +261,5 @@ $(document).on('change', '#ecourts', function (e) {
 </script>
 <script src="{{ asset('js/files.js') }}"></script>
 <script src="{{ asset('js/procedures.js') }}"></script>
+<script src="{{ asset('js/parties.js') }}"></script>
 @stop

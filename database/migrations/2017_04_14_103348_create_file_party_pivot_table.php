@@ -12,12 +12,12 @@ class CreateFilePartyPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('file_party', function (Blueprint $table) {
+        Schema::create('file_partie', function (Blueprint $table) {
             $table->integer('file_id')->unsigned()->index();
             $table->foreign('file_id')->references('id')->on('files')->onDelete('cascade');
-            $table->integer('party_id')->unsigned()->index();
-            $table->foreign('party_id')->references('id')->on('parties')->onDelete('cascade');
-            $table->primary(['file_id', 'party_id']);
+            $table->integer('partie_id')->unsigned()->index();
+            $table->foreign('partie_id')->references('id')->on('parties')->onDelete('cascade');
+            $table->primary(['file_id', 'partie_id']);
             $table->boolean('type');
             $table->boolean('nature');
         });
@@ -30,6 +30,6 @@ class CreateFilePartyPivotTable extends Migration
      */
     public function down()
     {
-        Schema::drop('file_party');
+        Schema::drop('file_partie');
     }
 }
