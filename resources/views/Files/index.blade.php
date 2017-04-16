@@ -262,4 +262,8 @@ $(document).on('change', '#ecourts', function (e) {
 <script src="{{ asset('js/files.js') }}"></script>
 <script src="{{ asset('js/procedures.js') }}"></script>
 <script src="{{ asset('js/parties.js') }}"></script>
+<script src="{{ asset('js/bootstrap-clockpicker.min.js') }}"></script>
+<script type="text/javascript">
+$('.clockpicker').clockpicker();
+</script>
 @stop

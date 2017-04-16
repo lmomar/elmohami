@@ -107,4 +107,10 @@ class CourtController extends Controller
         //Court::destroy($id);
         return response()->json();
     }
+    
+    
+    public function getParentCourtBySubCourt($sub_id){
+        $court = Court::find($sub_id);
+        return response()->json(['parent_id' => $court->parent_id]);
+    }
 }

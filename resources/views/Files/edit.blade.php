@@ -84,11 +84,12 @@
                     <div class="col-sm-4">
                         <input type="date" class="form-control" name="verdict_date">
                     </div>
-                    <div class="col-sm-2">
-                        {{ Form::selectRange('minute', 0, 60, 0, ['class' => 'form-control']) }}
-                    </div>
-                    <div class="col-sm-2">
-                        {{ Form::selectRange('heure', 0, 24, 0, ['class' => 'form-control']) }}
+                    <div class="input-group clockpicker col-sm-2 input-group-reset">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-time"></span>
+                        </span>
+                        <input type="text" class="form-control" value="09:30">
+                        
                     </div>
 
                 </div>

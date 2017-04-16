@@ -19,6 +19,7 @@
         <link href="{{ asset('style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/simple-line-icons.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/bootstrap-clockpicker.css') }}" rel="stylesheet">
         <!-- Main styles for this application -->
 
     </head>
