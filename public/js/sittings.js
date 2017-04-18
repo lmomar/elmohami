@@ -5,13 +5,15 @@ new Vue({
     el: '#manage-vue',
 
     data: {
+        sortKey: '',
         items: [],
         pagination: {
             total: 0,
             per_page: 2,
             from: 1,
             to: 0,
-            current_page: 1
+            current_page: 1,
+            last_page: 0
         },
         offset: 4,
         formErrors: {},
@@ -51,6 +53,10 @@ new Vue({
 
     methods: {
 
+        sortBy: function (sortKey) {
+            this.sortKey = sortKey;
+        },
+
         getVueItems: function (page) {
             this.$http.get('/sittings?page=' + page).then((response) => {
                 this.$set('items', response.data.data.data);
@@ -59,12 +65,15 @@ new Vue({
 
 
 
-deleteItem: function(item){
-      this.$http.delete('/sittings/delete/'+item.id).then((response) => {
+deleteItem: function(item) {
+    var conf = confirm("etes vous sur");
+    if (conf) {
+    this.$http.delete('/sittings/delete/' + item.id).then((response) => {
         this.changePage(this.pagination.current_page);
     toastr.success('Item Deleted Successfully.', 'Success Alert', {timeOut: 5000});
 
 });
+};
 },
 
 editItem: function(item) {
