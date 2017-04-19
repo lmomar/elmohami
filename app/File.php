@@ -15,6 +15,10 @@ class File extends Model
     {
         return $this->hasMany('App\Sitting');
     }
+    public function courts()
+    {
+        return $this->belongsTo(Court::class,'court_id');
+    }
     
     public function procedures() {
         return $this->hasMany('App\Procedure');

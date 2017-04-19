@@ -21,10 +21,14 @@ class FileController extends Controller {
     }
 
     public function index(Request $request) {
-        $files = File::paginate(6);
+        //$files = File::paginate(6);
         $courts = Court::all()->where('parent_id', 'is', null);
         $count = File::all()->count();
-        
+        $files = DB::table('files')
+                ->join('courts','files.court_id','=','courts.id')
+                ->select('files.*','courts.name')
+                ->paginate(6);
+        //dd($files2);
         $response = [
             'pagination' => [
                 'total' => $files->total(),
@@ -84,37 +88,14 @@ class FileController extends Controller {
         
     }
 
-    public function update(Request $request) {
+    public function update(Request $request,$id) {
         $this->validate($request, [
             'reference',
             'sub_courts'
         ]);
-        $inputs = $request->all();
-        $file = File::findOrFail($inputs['file_id']);
-
-        $file->reference = $inputs['reference'];
-        /* relations */
-        $file->court_id = $inputs['sub_courts'];
-        $file->office_id = '1'; /* get office id from connected user */
-
-        $file->registration_date = $inputs['registration_date'];
-        $file->type = $inputs['type'];
-        $file->division = $inputs['division'];
-        $file->subject = $inputs['subject'];
-        $file->elementary_num = $inputs['elementary_num'];
-        $file->decision_judge = $inputs['decision_judge'];
-        $file->appellate_num = $inputs['appellate_num'];
-        $file->appellate_judge = $inputs['appellate_judge'];
-        $file->verdict = $inputs['verdict'];
-        $heure = $inputs['heure'];
-        $minute = $inputs['minute'];
-        if ($heure !== '0') {
-            $file->verdict_date = $inputs['verdict_date'] + $heure + ':' + $minute + '00';
-        } else {
-            $file->verdict_date = $inputs['verdict_date'];
-        }
-        $file->save();
-        return response()->json();
+      
+        $update = File::find($id)->update($request->all());
+        return response()->json($update);
     }
 
     public function delete($id) {

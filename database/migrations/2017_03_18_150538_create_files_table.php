@@ -23,7 +23,7 @@ class CreateFilesTable extends Migration
             $table->string('decision_judge')->nullable();   /*القاضي المقرر*/
             $table->date('registration_date')->nullable();  /*تاريخ التسجيل*/
             $table->text('verdict')->nullable();                        /*  آخر حكم/قرار*/
-            $table->date('verdict_date')->nullable();
+            $table->datetime('verdict_date')->nullable();
             $table->string('appellate_num')->unique()->nullable();    /*الرقم الاستئنافي*/
             $table->string('appellate_judge')->nullable();  /*القاضي المستشار*/
             $table->unsignedInteger('office_id');

@@ -17,7 +17,8 @@ new Vue({
     formErrors:{},
     formErrorsUpdate:{},
     newItem : {'reference':'','type':'','division':'','subject':'','elementary_num':'','registration_date':'','decision_judge':'','court_id':'','office_id':''},
-    fillItem : {'title':'','description':'','id':''}
+    fillItem : {'reference':'','type':'','division':'','subject':'','elementary_num':'','registration_date':'','decision_judge':'','court_id':''
+        ,'appellate_num':'','appellate_judge':'','verdict':'','verdict_date':'','name':name}
   },
 
   computed: {
@@ -55,7 +56,7 @@ new Vue({
           this.$http.get('/files?page='+page).then((response) => {
             this.$set('items', response.data.data.data);
             this.$set('pagination', response.data.pagination);
-            $('#count').html(response.data.data.total);
+            this.$set('files_count',response.data.data.total)
           });
         },
 
@@ -81,23 +82,53 @@ new Vue({
       },
 
       editItem: function(item){
-          this.fillItem.title = item.title;
+          
+          this.fillItem.reference = item.reference;
           this.fillItem.id = item.id;
-          this.fillItem.description = item.description;
-          $("#edit-item").modal('show');
+          this.fillItem.court_id = item.court_id;
+          this.fillItem.type = item.type;
+          this.fillItem.division = item.division;
+          this.fillItem.subject = item.subject;
+          this.fillItem.elementary_num = item.elementary_num;
+          this.fillItem.registration_date = item.registration_date;
+          this.fillItem.decision_judge = item.decision_judge;
+          this.fillItem.appellate_num = item.appellate_num;
+          this.fillItem.appellate_judge = item.appellate_judge;
+          this.fillItem.verdict = item.verdict;
+          this.fillItem.verdict_date = item.verdict_date;
+          var c = new Date(item.verdict_date);
+          
+          $('#verdict_time').text(c.getHours() + ':' + c.getMinutes());
+          this.fillItem.verdict_time = c.getHours() + ':' + c.getMinutes();
+          
+          $("#myModalEdit").modal('show');
       },
 
       updateItem: function(id){
         var input = this.fillItem;
-        this.$http.put('/vueitems/'+id,input).then((response) => {
+        console.dir(input);
+        this.$http.put('/files/update/'+id,input).then((response) => {
             this.changePage(this.pagination.current_page);
-            this.fillItem = {'title':'','description':'','id':''};
-            $("#edit-item").modal('hide');
-            toastr.success('Item Updated Successfully.', 'Success Alert', {timeOut: 5000});
+            this.fillItem = {'reference':'','type':'','division':'','subject':'','elementary_num':'','registration_date':'','decision_judge':'','court_id':''
+        ,'appellate_num':'','appellate_judge':'','verdict':'','verdict_date':''};
+            $("#myModalEdit").modal('hide');
+            toastr.success('تم تعديل الملف بنجاح.', 'Success Alert', {timeOut: 5000});
           }, (response) => {
               this.formErrorsUpdate = response.data;
+              console.dir(response.data);
           });
       },
+      
+      showFileInfo: function(item){
+          this.$set('file',item);/* file info */
+          this.$http.get('/parties/all/'+item.id).then((response) => {
+              console.dir(response.data.parties);
+              this.$set('parties_count',response.data.parties.length);
+              this.$set('parties',response.data.parties);
+          })
+      },
+      
+      
 
       changePage: function (page) {
           this.pagination.current_page = page;

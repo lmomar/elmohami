@@ -49,6 +49,7 @@ class SittingController extends Controller {
             'sitting_date' => 'required',
             'file_id' => 'required',
         ]);
+        
         $edit = Sitting::find($id)->update($request->all());
         return response()->json($edit);
     }

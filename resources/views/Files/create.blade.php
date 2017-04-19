@@ -7,8 +7,7 @@
                 <h4 class="modal-title" id="myModalLabel">إضافة ملف</h4>
             </div>
             <div class="modal-body">
-                {{-- {!! Form::open(['route' => 'file.store','method' => 'post','class' => 'form-horizontal','id' => 'FormAdd','role' => 'form','v-on:submit.prevent' => 'createItem']) !!}--}}
-                <form method="post" enctype="multipart/form-data" action="{{ route('file.store') }}" class="form-horizontal" id="FormAdd" v-on:submit.prevent="createItem">
+                {!! Form::open(['route' => 'file.store','method' => 'post','class' => 'form-horizontal','id' => 'FormAdd','role' => 'form','v-on:submit.prevent' => 'createItem','v-on:submit.prevent' => 'createItem']) !!}
                 {{ csrf_field() }}
                 <input type="hidden" name="office_id" value="1">
                 <div class="form-group row">
