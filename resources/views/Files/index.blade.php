@@ -126,16 +126,16 @@
                                             <div class="col-lg-2 col-xs-6 label-color"><label>تاريخ التسجيل</label></div>
                                             <div class="col-lg-2 col-xs-6"><span class="form-control" id="registration_date">@{{ file.registration_date }}</span></div>
                                         </div>
-                                        <div cla                    ss="form-group overflow-hidden">
-                                            <div class="col-lg-2 col-xs-                        6 label-color"><label>الرقم الاستئنافي</label></div>
+                                        <div class="form-group overflow-hidden">
+                                            <div class="col-lg-2 col-xs-6 label-color"><label>الرقم الاستئنافي</label></div>
                                             <div class="col-lg-4 col-xs-6"><span class="form-control" id="appellate_num">@{{ file.appellate_num }}</span></div>
                                             <div class="col-lg-2 col-xs-6 label-color"><label>القاضي المستشار</label></div>
-                                            <div class="col-lg-4 col-xs-            6"><span class="form-control" id="appellate_judge">@{{ file.appellate_judge }}</span></div>
+                                            <div class="col-lg-4 col-xs-6"><span class="form-control" id="appellate_judge">@{{ file.appellate_judge }}</span></div>
                                         </div>
 
-                                        <div class="form-group overflow-hidd                en">
-                                            <div class="col-lg-2 col-xs-6 label-color"><label>الموضو                    ع</label></div>
-                                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="subject">@{{ file.                    subject }}</span></div>
+                                        <div class="form-group overflow-hidden">
+                                            <div class="col-lg-2 col-xs-6 label-color"><label>الموضوع</label></div>
+                                            <div class="col-lg-2 col-xs-6"><span class="form-control" id="subject">@{{ file.subject }}</span></div>
                                             <div class="col-lg-2 col-xs-6 label-color"><label>قرار الحكم</label></div>
                                             <div class="col-lg-2 col-xs-6"><span class="form-control" id="verdict">@{{ file.verdict }}</span></div>
                                             <div class="col-lg-2 col-xs-6 label-color"><label>تاريخ قرار الحكم</label></div>
