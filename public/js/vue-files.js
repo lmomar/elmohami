@@ -1,10 +1,27 @@
 Vue.http.headers.common['X-CSRF-TOKEN'] = $("#csrf-token").attr("content");
+Vue.component('file_info',{
+    props: {
+        file_id:0,
+        file : Object
+    },
+    template:   '<li><button @click="test">click</button></li>',
+    mounted:function(){
+      console.log('mounted test');
+    },
+    methods : {
+        test: function(){
+            console.log('test test');
+        }
+    }
+    
+})
+var vfile=new Vue({
 
-new Vue({
-
-  el: '#manage-vue',
+  el: '#tab1files',
 
   data: {
+    file_id: 0,
+    file:{},
     items: [],
     pagination: {
         total: 0, 
@@ -121,11 +138,10 @@ new Vue({
       
       showFileInfo: function(item){
           this.$set('file',item);/* file info */
-          this.$http.get('/parties/all/'+item.id).then((response) => {
-              console.dir(response.data.parties);
-              this.$set('parties_count',response.data.parties.length);
-              this.$set('parties',response.data.parties);
-          })
+          this.$data.file_id = item.id;
+          this.$data.file = item;
+          console.dir(this.$data.file);
+          partie.getVueItems(1,item.id);
       },
       
       

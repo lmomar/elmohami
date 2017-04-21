@@ -108,7 +108,7 @@
 
                                     </div>
 
-
+                                    <file_info :file="file"></file_info>
                                     <div class="card-block">
                                         <div class="form-group overflow-hidden">
                                             <div class="col-lg-2 col-xs-6 label-color"><label>المحكمة</label></div>
@@ -158,7 +158,7 @@
                                             <i class="fa fa-plus-square"></i>
                                         </a>
                                     </div>
-
+                                    <parties :file_id="file_id" v-for="p in items" :liste="p"></parties>
                                     <div class="card-block">
                                         <table class="table table-bordered table-striped table-condensed" id="parties">
                                             <thead>
@@ -188,12 +188,28 @@
                                                 </tr>
                                             </tbody>
                                             <tfoot><tr>
-                                                    <td colspan="7">عدد الأطراف :<b id="parties-count">@{{ parties_count }}</b></td>
+                                                    <td colspan="7">عدد الأطراف :<b>@{{ parties_count }}</b></td>
                                                 </tr></tfoot>
                                         </table>                                                                                                                                   
                                         <nav>
-                                            <ul id="parties-pagination" class="p                                                                                                                        agination">
-
+                                            <ul class="pagination">
+                                                <li v-if="Parties_pagination.current_page > 1">
+                                                    <a href="#" aria-label="Previous"
+                                                       @click.prevent="changePage(Parties_pagination.current_page - 1)">
+                                                        <span aria-hidden="true">«</span>
+                                                    </a>
+                                                </li>
+                                                <li v-for="page in pagesNumber"
+                                                    v-bind:class="[ page == isActived ? 'active' : '']">
+                                                    <a href="#"
+                                                       @click.prevent="changePage(page)">@{{ page }}</a>
+                                                </li>
+                                                <li v-if="Parties_pagination.current_page < Parties_pagination.last_page">
+                                                    <a href="#" aria-label="Next"
+                                                       @click.prevent="changePage(Parties_pagination.current_page + 1)">
+                                                        <span aria-hidden="true">»</span>
+                                                    </a>
+                                                </li>
                                             </ul>
                                         </nav>
                                     </div>
@@ -297,6 +313,7 @@
         });
     </script>
     <script type="text/javascript" src="{{ asset('js/vue-files.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/vue-parties.js')}}"></script>
 
 
 

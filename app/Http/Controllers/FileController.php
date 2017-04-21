@@ -21,7 +21,6 @@ class FileController extends Controller {
     }
 
     public function index(Request $request) {
-        //$files = File::paginate(6);
         $courts = Court::all()->where('parent_id', 'is', null);
         $count = File::all()->count();
         $files = DB::table('files')
@@ -84,9 +83,7 @@ class FileController extends Controller {
         return response()->json(['file' => $file]);
     }
 
-    public function edit($id) {
-        
-    }
+  
 
     public function update(Request $request,$id) {
         $this->validate($request, [

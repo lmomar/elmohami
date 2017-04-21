@@ -27,13 +27,26 @@ class PartieController extends Controller {
 
     /* get parties by file_id */
 
-    public function all($file_id) {
-        $res = File::find($file_id)->parties;
-        return response()->json(['parties' => $res]);
+    public function all(Request $request,$file_id) {
+        //$file_id = $request->get('file_id');
+        $res = File::find($file_id)->parties()->paginate(3);
+
+        $response = [
+            'Parties_pagination' => [
+                'total' => $res->total(),
+                'per_page' => $res->perPage(),
+                'current_page' => $res->currentPage(),
+                'last_page' => $res->lastPage(),
+                'from' => $res->firstItem(),
+                'to' => $res->lastItem()
+            ],
+            'data' => $res
+        ];
+        return response()->json($response);
     }
     
     public function getPartieInfo($id) {
-        $partie = File::find('4')->parties()->where('partie_id',$id)->first();
+        $partie = Partie::where('partie_id',$id)->first();
         if(empty($partie)){
             return response()->json(['message' => 'not found'], Response::HTTP_NOT_FOUND);
         }
