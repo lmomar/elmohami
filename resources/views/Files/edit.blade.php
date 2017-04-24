@@ -15,17 +15,19 @@
                         <label for="city">المحكمة</label>
                     </div>
                     <div class="col-sm-5">
-                        <select id="ecourts" name="courts" class="form-control" required="">
-                            <option value="">------------</option>
-
+                        <select id="ecourts" name="courts" class="form-control" required="" @change="getSubCourts($event.target.value)">
+                            <option>------------</option>
+                            <option :value="c.id" v-for="c in courts" @click="getSubCourts(c.id)"
+                            :selected="c.id === parent_court_id ? true : false">@{{ c.name }}</option>
                         </select>
                         <small class="help-block"></small>
                     </div>
                     <div class="col-sm-5">
 
                         <select id="esub_courts" name="sub_courts" class="form-control" required="">
-                            <option value="">------------</option>
-
+                            <option>------------</option>
+                            <option :value="sub.id" v-for="sub in sub_courts"
+                                    :selected="sub.id == fillItem.court_id ? true : false" >@{{ sub.name }}</option>
                         </select>
                         <small class="help-block"></small>
                     </div>
@@ -54,7 +56,7 @@
                     <div class="col-sm-1"><label>تاريخ التسجيل</label></div>
                     <div class="col-sm-5"><input type="date" class="form-control"
                                                  name="registration_date"
-                                                 value="" </div>
+                                                 value=""> </div>
                 </div>
 
                 <div class="form-group row">

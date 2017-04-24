@@ -50,6 +50,7 @@ Route::group(['prefix' => 'courts'], function() {
     Route::get('/create', 'CourtController@create')->name('court.create');
     Route::post('/store', 'CourtController@store')->name('court.store');
     Route::get('/delete/{id}', 'CourtController@delete')->name('court.delete')->where('id', '[0-9]+');
+    Route::get('/parent/{id}','CourtController@getParentCourtBySubCourt')->where('id','[0-9]+');
 });
 
 /* files */
