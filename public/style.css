@@ -3714,18 +3714,6 @@ button.close {
     border: 1px solid rgba(0, 0, 0, 0.2);
     outline: 0; }
 
-.modal-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 1040;
-    background-color: #000; }
-.modal-backdrop.fade {
-    opacity: 0; }
-.modal-backdrop.in {
-    opacity: 0.5; }
 
 .modal-header {
     padding: 15px;

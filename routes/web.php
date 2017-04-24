@@ -45,6 +45,7 @@ Route::post('office/register', 'Office\RegisterController@register');
 /* courts */
 Route::group(['prefix' => 'courts'], function() {
     Route::get('/', 'CourtController@index')->name('courts');
+    Route::get('/all', 'CourtController@courts')->name('courts.all');
     Route::get('/get/{id}', 'CourtController@getCourts')->name('getCourtsByParent')->where('id', '[0-9]+');
     Route::get('/create', 'CourtController@create')->name('court.create');
     Route::post('/store', 'CourtController@store')->name('court.store');

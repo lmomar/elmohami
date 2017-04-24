@@ -46,6 +46,7 @@ class FileController extends Controller {
 
     public function store(Request $request) {
         //$file = new File();
+
         $this->validate($request, [
             'reference'
         ]);

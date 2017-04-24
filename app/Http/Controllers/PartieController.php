@@ -29,7 +29,7 @@ class PartieController extends Controller {
 
     public function all(Request $request,$file_id) {
         //$file_id = $request->get('file_id');
-        $res = File::find($file_id)->parties()->paginate(3);
+        $res = File::find($file_id)->parties()->paginate(2);
 
         $response = [
             'Parties_pagination' => [

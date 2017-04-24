@@ -12,7 +12,7 @@
         <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
         <title>Law office management</title>
 
-        
+
         <!-- Icons -->
         <link href="{{ asset('css/app_tabs.css') }}" rel="stylesheet">
         <link href="{{ asset('css/bootstrap.tabs.min.css') }}" rel="stylesheet">
@@ -102,13 +102,14 @@
                         </form>
                     </li>
 
-                    
+
                 </ul>
             </nav>
         </div>
         <main class="main en">
-
+            
             @yield('content')
+           
         </main>
 
         <footer class="footer">
@@ -120,19 +121,19 @@
             </span>
         </footer>
         <!-- Bootstrap and necessary plugins -->
-        <script src="{{ asset('js/libs/jquery.min.js') }}"></script>
-        
+       <script src="{{ asset('js/libs/jquery.min.js') }}"></script>
+
         <script src="{{ asset('js/libs/tether.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.js') }}"></script>
         <script src="{{ asset('js/moment.js') }}"></script>
-        <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <!--<script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>-->
 
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.6/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.3.1/vue-resource.js"></script>
         @yield('script')
 
     </body>

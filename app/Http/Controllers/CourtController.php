@@ -24,6 +24,14 @@ class CourtController extends Controller
     }
 
     /**
+     * get courts in json format
+     */
+    public function courts(){
+        $courts_parents = Court::whereNull('parent_id')->get();
+        return new JsonResponse(['courts' => $courts_parents]);
+    }
+
+    /**
      * 
      * @param type $id => parent_id
      * @return JsonResponse
